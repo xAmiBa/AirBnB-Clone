@@ -15,8 +15,8 @@ Until a user has confirmed a booking request, that space can still be booked for
     - description
     - price per night
 
-- date
-    - availability of space (available or not)
+- availability
+    - availability of space (available or not)- date
     - booking request
 
 - user
@@ -34,7 +34,47 @@ Until a user has confirmed a booking request, that space can still be booked for
 - Approve (confirm) a booking request
 
 
+# Classes
+## User
+Properties:
+- self.id - INT
+- self.username - STRING
+- self.name - STRING
+- self.password - STRING
 
+## User_repository
+| id | username | name | password |
+|-----------------|-----------------|-----------------|-----------------|
+
+add_user()
+login_valid()
+
+## Space
+Properties:
+- self.id - INT
+- self.name - STRING
+- self.description - STRING
+- self.prive - FLOAT
+- self.availability_from - STRING
+- self.availability_to - STRING
+
+## SpaceRepository
+| id | name | name | descrition | price | available_from | available to |
+|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+
+- add_space()
+
+## Calendar
+- self.start - STRING
+- self.end - STRING
+
+## Request
+- self.
+
+## RequestRepository
+| id | user_id | space_id | date_from | date_to |  |  |
+|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
+add_request()
 
 
 
