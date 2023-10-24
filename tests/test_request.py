@@ -10,7 +10,6 @@ def test_constructor():
 
 #testing approve request
 def test_approve_request():
-
     new_request = Request( 2, 1, "13/2/23", False)
 
     new_request.approve_request()
