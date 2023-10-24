@@ -15,7 +15,7 @@ class Request_repository:
         rows = self._connection.execute('SELECT id, request_user_id, space_id, requested_date, status from requests')
         requests = []
         for row in rows:
-            item = Request(row["id"], row["request_user_id"], row["space_id"], row["requested_date"], row["status"])
+            item = Request( row["request_user_id"], row["space_id"], row["requested_date"], row["status"])
             requests.append(item)
         return requests
 

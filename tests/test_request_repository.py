@@ -20,5 +20,5 @@ def test_get_all_requests(db_connection):
     new_repository = Request_repository(db_connection)
     
     all_requests = new_repository.get_all_requests()
-    assert all_requests == [Request(1,1,2, '12/12/23',False), \
-                            Request(2,2,3,'03/08/23',False)]
+    assert all_requests == [Request(1,2, '12/12/23',False), \
+                            Request(2,3,'03/08/23',False)]
