@@ -16,9 +16,9 @@ def test_request_add(db_connection):
 
 def test_get_all_requests(db_connection):
     
-    db_connection.seed("seeds/db_makers_bnb.sql")
-    new_repository = Request_repository(db_connection)
+    db_connection.seed("seeds/db_makers_bnb.sql")       #seeding db
+    new_repository = Request_repository(db_connection)  #repository instance
     
-    all_requests = new_repository.get_all_requests()
+    all_requests = new_repository.get_all_requests()            #expected result 
     assert all_requests == [Request(1,2, '12/12/23',False), \
                             Request(2,3,'03/08/23',False)]

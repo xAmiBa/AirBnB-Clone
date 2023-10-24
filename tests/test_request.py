@@ -2,13 +2,15 @@ from lib.request import *
 
 # test class constructor 
 def test_constructor():
+
+    #creating instance of request class with set data
     new_request = Request( 2, 1, "13/2/23", False)
     assert new_request.request_user_id == 2
     assert new_request.space_id == 1
     assert new_request.requested_date == "13/2/23"
     assert new_request.status == False
 
-#testing approve request
+#testing approve request - switching request status to True
 def test_approve_request():
     new_request = Request( 2, 1, "13/2/23", False)
 
