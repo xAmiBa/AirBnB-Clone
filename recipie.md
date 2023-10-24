@@ -75,9 +75,10 @@ Properties:
 |-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
 - add_request()
 
+# Global naming rules
+DEV_DATABASE_NAME = "makersbnb"
 
-
-
+TEST_DATABASE_NAME = "test_makersbnb"
 
 
 
