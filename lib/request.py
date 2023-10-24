@@ -2,7 +2,7 @@
 
 class Request:
 
-    def __init__(self, requested_date, space_id, request_user_id, status ):
+    def __init__(self, request_user_id, space_id, requested_date, status ):
         
         #initialised variables
         self.id = int
@@ -21,4 +21,4 @@ class Request:
 
     #for string representation
     def __repr__(self):
-        return f"Request({self.id}, requested date:{self.requested_date},space id:{self.space_id}, requestor's id:{self.request_user_id},current stats:{self.status})"
+        return f"Request({self.id}, requestor's id:{self.request_user_id}, space id:{self.space_id}, requested date:{self.requested_date},current stats:{self.status})"
