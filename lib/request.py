@@ -14,7 +14,6 @@ class Request:
     # to set approved 
     def approve_request(self):
         self.status = True
-        return self.status
 
     #for testing equality (to adjust)
     def __eq__(self,other):
