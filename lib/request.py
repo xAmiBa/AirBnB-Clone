@@ -5,11 +5,11 @@ class Request:
     def __init__(self, requested_date, space_id, request_user_id, status ):
         
         #initialised variables
-        id = int
-        requested_date = str (requested_date)
-        space_id = int (space_id)
-        request_user_id = int (request_user_id)
-        status = bool (status)
+        self.id = int
+        self.requested_date = str (requested_date)
+        self.space_id = int (space_id)
+        self.request_user_id = int (request_user_id)
+        self.status = bool (status)
 
     # to set approved 
     def approve_request(self):
