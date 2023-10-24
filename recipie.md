@@ -69,10 +69,10 @@ Properties:
 
 ## Request
 - self.
+| id | user_id | space_id | requested_date | status |
+|-----------------|-----------------|-----------------|-----------------|-----------------|
 
 ## RequestRepository
-| id | user_id | space_id | date_from | date_to |  |  |
-|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
 - add_request()
 
 # Global naming rules

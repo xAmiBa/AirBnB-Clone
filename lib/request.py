@@ -6,9 +6,9 @@ class Request:
         
         #initialised variables
         self.id = int
-        self.requested_date = str (requested_date)
-        self.space_id = int (space_id)
         self.request_user_id = int (request_user_id)
+        self.space_id = int (space_id)
+        self.requested_date = str (requested_date)
         self.status = bool (status)
 
     # to set approved 
