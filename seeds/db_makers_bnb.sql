@@ -1,18 +1,4 @@
 
--- First, we must delete (drop) all our tables
-DROP TABLE IF EXISTS <USER>;
-DROP SEQUENCE IF EXISTS <table_name>_id_seq;
-
--- Then, we recreate them
-CREATE SEQUENCE IF NOT EXISTS <table_name>_id_seq;
-CREATE TABLE <table_name> (
-    id SERIAL PRIMARY KEY,
-    <column> text,
-    <column> int,
-);
-
-INSERT INTO <table_name> (<columns>) VALUES (<values>);
-
 -- Write file into database in terminal
 -- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
 -- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
@@ -79,19 +65,19 @@ DROP SEQUENCE IF EXISTS requests_id_seq;
 CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
 CREATE TABLE requests (
     id SERIAL PRIMARY KEY,
-    user_id int,
+    request_user_id int,
     space_id int,
     requested_date text,
     status boolean
 );
 
 -- request 1 
-INSERT INTO requests (user_id, space_id, requested_date, status) 
-VALUES (1,2, '12/12/23',False);
+INSERT INTO requests (request_user_id, space_id, requested_date, status) 
+VALUES (1,2, '12/12/23',FALSE);
 
 -- request 2 
-INSERT INTO requests (user_id, space_id, requested_date, status) 
-VALUES (2,3,'03/08/23',False);
+INSERT INTO requests (request_user_id, space_id, requested_date, status) 
+VALUES (2,3,'03/08/23',FALSE);
 
 -- Write file into database in terminal
 -- psql -h 127.0.0.1 MAKERS_BNB < seeds/db_requests_seed.sql
@@ -99,9 +85,3 @@ VALUES (2,3,'03/08/23',False);
 
 
 -- ### request tables over
-
-
-
-
-
-

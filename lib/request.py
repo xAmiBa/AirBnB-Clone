@@ -16,8 +16,16 @@ class Request:
         self.status = True
 
     #for testing equality (to adjust)
-    def __eq__(self,other):
-        return self== other
+    def __eq__(self, other):
+        if isinstance(other, Request):
+            return (
+                self.request_user_id == other.request_user_id and
+                self.space_id == other.space_id and
+                self.requested_date == other.requested_date and
+                self.status == other.status
+            )
+        return False
+
 
     #for string representation
     def __repr__(self):
