@@ -56,31 +56,36 @@ Properties:
 - self.description - STRING
 - self.price - FLOAT
 - self.availability_from - STRING
-- self.availability_to - STRING
+- self.availability_till - STRING
+- self.calendar - DICT (date:boolean)
 
-## SpaceRepository
+## Space_repository
 | id | name | description | price | availability_from | availablity_to |
 |-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
 - add_space()
 
-## Calendar
-- self.start - STRING
-- self.end - STRING
-
 ## Request
-- self.
+=======
+
+- self.space_id
+- self.request_user_id
+- self.status
+- approve_request()
+
 | id | user_id | space_id | requested_date | status |
 |-----------------|-----------------|-----------------|-----------------|-----------------|
 
-## RequestRepository
+
+## Request_repository
 - add_request()
+
 
 # Global naming rules
 DEV_DATABASE_NAME = "makersbnb"
 
 TEST_DATABASE_NAME = "test_makersbnb"
 
-
+DATE FORMAT = dd/mm/yy
 
 
 
