@@ -1,8 +1,15 @@
 
--- Write file into database in terminal
--- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
--- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
+-- DROP SEQUENCE IF EXISTS <table_name>_id_seq;
 
+-- -- Then, we recreate them
+-- CREATE SEQUENCE IF NOT EXISTS <table_name>_id_seq;
+-- CREATE TABLE <table_name> (
+--     id SERIAL PRIMARY KEY,
+--     <column> text,
+--     <column> int,
+-- );
+
+-- INSERT INTO <table_name> (<columns>) VALUES (<values>);
 
 DROP TABLE IF EXISTS spaces;
 DROP SEQUENCE IF EXISTS spaces_id_seq;
@@ -54,10 +61,36 @@ VALUES (
 -- psql -h 127.0.0.1 MAKERS_BNB < seeds/db_makers_bnb.sql
 -- psql -h 127.0.0.1 MAKERS_BNB_TEST < seeds/db_makers_bnb.sql
 
+DROP TABLE IF EXISTS users;
+DROP SEQUENCE IF EXISTS users_id_seq;
 
+-- Then, we recreate them
+CREATE SEQUENCE IF NOT EXISTS users_id_seq;
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username text,
+    name text,
+    email text,
+    password text
+);
+
+INSERT INTO users (username, name, email, password) VALUES ('Amina_1', 'Amina', 'Amina@mail.com','Amina123!');
+INSERT INTO users (username, name, email, password) VALUES ('Jake_1', 'Jake', 'Jake@mail.com','Jake123!');
+INSERT INTO users (username, name, email, password) VALUES ('Sudhansh_1', 'Sudhansh', 'Sudhansh@mail.com','Sudhansh123!');
+
+-- Write file into database in terminal
+-- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
+-- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
+=======
+-- -- Write file into database in terminal
+-- -- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
+-- -- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
+
+-- ### request tables over
 -- REQUEST TAABLES #############
 
 -- First, we must delete (drop) all our tables
+
 DROP TABLE IF EXISTS requests;
 DROP SEQUENCE IF EXISTS requests_id_seq;
 
@@ -83,5 +116,11 @@ VALUES (2,3,'03/08/23',FALSE);
 -- psql -h 127.0.0.1 MAKERS_BNB < seeds/db_requests_seed.sql
 -- psql -h 127.0.0.1 MAKERS_BNB_TEST < seeds/db_requests_seed.sql
 
+-- -- Write file into database in terminal
+-- -- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
+-- -- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
 
 -- ### request tables over
+
+
+
