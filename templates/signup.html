@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Signup | MakersBnB</title>
+        <link rel="stylesheet" href="/static/style.css" >
+    </head>
+    <body>
+        <h1>Signup to MakersBnB</h1>
+        <form action="/signup" method="POST">
+            <!-- showing errors if there are any in signup submission -->
+            {% if errors %}
+            <p class="t-errors">
+            There were errors with your submission: {{ errors }}
+            </p>
+            {% endif %}
+
+        <p>
+            <label for="title">Name</label>
+            <input type="text" name="name" id="name">
+        </p>
+
+        <p>
+            <label for="title">Name</label>
+            <input type="text" name="name" id="name">
+        </p>
+      
+      <p>
+        <!-- `type` is submit here, to indicate it is a button -->
+        <!-- `value` is used as the button's text -->
+        <input type="submit" value="Create Book">
+      </p>
+        </form>
+    </body>
+</html>
