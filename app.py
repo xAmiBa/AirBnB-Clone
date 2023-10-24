@@ -5,14 +5,11 @@ from lib.database_connection import get_flask_database_connection
 # Create a new Flask app
 app = Flask(__name__)
 
-# == Your Routes Here ==
 
-# GET /index
+# GET /
 # Returns the homepage
-# Try it:
-#   ; open http://localhost:5000/index
-@app.route('/index', methods=['GET'])
-def get_index():
+@app.route('/', methods=['GET'])
+def get_homepage():
     return render_template('index.html')
 
 # These lines start the server if you run this file directly
