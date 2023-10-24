@@ -32,6 +32,28 @@ def test_add_new_user(db_connection):
                     User(4, "Gin_71", "Gina", "gina@mail.com", "Gina123!")] 
 
 """
+Add a registed user 
+"""
+def test_add_registed_user(db_connection):
+    db_connection.seed("seeds/db_makers_bnb.sql")
+    repository = User_repository(db_connection)
+
+    error_message = repository.add_user(User(3, 'Sudhansh_1', 'Sudhansh', 'Sudhansh@mail.com','Sudhansh123!'))
+
+    assert error_message == "This user is alredy register"
+
+    """
+Add a new user 
+"""
+def test_add_registed_email(db_connection):
+    db_connection.seed("seeds/db_makers_bnb.sql")
+    repository = User_repository(db_connection)
+
+    error_message = repository.add_user(User(4, "Gin_71", "Gina", 'Sudhansh@mail.com', "Gina123!"))
+    
+    assert error_message == "This user is alredy register"
+    
+"""
 Loging a valid user
 """
 
