@@ -5,7 +5,6 @@ from lib.database_connection import get_flask_database_connection
 # Create a new Flask app
 app = Flask(__name__)
 
-
 # [GET] /
 # Returns the homepage
 @app.route('/', methods=['GET'])
@@ -23,6 +22,9 @@ def get_homepage():
 # Returns the signup page with signup form
 # Posts signup details to database
 @app.route('/signup', methods=['GET'])
+def get_signup():
+    return render_template('signup.html')
+
 @app.route('/signup', methods=['POST'])
 
 # [GET] /spaces
