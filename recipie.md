@@ -46,22 +46,21 @@ Properties:
 | id | username | name | password |
 |-----------------|-----------------|-----------------|-----------------|
 
-add_user()
-login_valid()
+- add_user()
+- login_valid()
 
 ## Space
 Properties:
 - self.id - INT
 - self.name - STRING
 - self.description - STRING
-- self.prive - FLOAT
+- self.price - FLOAT
 - self.availability_from - STRING
 - self.availability_to - STRING
 
 ## SpaceRepository
-| id | name | name | descrition | price | available_from | available to |
-|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
-
+| id | name | description | price | availability_from | availablity_to |
+|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
 - add_space()
 
 ## Calendar
@@ -74,7 +73,7 @@ Properties:
 ## RequestRepository
 | id | user_id | space_id | date_from | date_to |  |  |
 |-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|-----------------|
-add_request()
+- add_request()
 
 
 
