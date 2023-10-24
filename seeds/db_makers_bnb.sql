@@ -1,10 +1,3 @@
--- User stories:
-
--- Nouns: 
-
--- Column names:
-
--- Table name:
 
 -- First, we must delete (drop) all our tables
 DROP TABLE IF EXISTS <USER>;
@@ -20,8 +13,9 @@ CREATE TABLE <table_name> (
 
 INSERT INTO <table_name> (<columns>) VALUES (<values>);
 
-# Write file into database in terminal
-psql -h 127.0.0.1 database_name < table_name.sql
+-- Write file into database in terminal
+-- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
+-- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
 
 
 
