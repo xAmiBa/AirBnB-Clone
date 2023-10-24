@@ -54,7 +54,7 @@ def test_add_registed_email(db_connection):
     assert error_message == "This user is alredy register"
     
 """
-Loging a valid user
+Loging a valid user 
 """
 
 def test_login_valid_user(db_connection):
