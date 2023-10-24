@@ -49,7 +49,7 @@ def test_login_valid_user(db_connection):
 """
 Loging a invalid user with invalid password
 """
-def test_login_valid_user(db_connection):
+def test_login_invalid_password(db_connection):
     db_connection.seed("seeds/db_makers_bnb.sql")
     repository = User_repository(db_connection)
 
@@ -63,7 +63,7 @@ def test_login_valid_user(db_connection):
 """
 Loging a invalid user with invalid username
 """
-def test_login_valid_user(db_connection):
+def test_login_invalid_user(db_connection):
     db_connection.seed("seeds/db_makers_bnb.sql")
     repository = User_repository(db_connection)
 

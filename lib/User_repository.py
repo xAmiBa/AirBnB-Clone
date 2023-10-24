@@ -12,9 +12,15 @@ class User_repository:
         return users
     
     def add_user(self, user):
-        self._connection.execute('INSERT INTO users (username, name, email, password) VALUES (%s, %s, %s, %s)', [
+        rows = self._connection.execute(
+            'SELECT * from users WHERE username = %s', [user.name])
+        if rows == []:
+            self._connection.execute('INSERT INTO users (username, name, email, password) VALUES (%s, %s, %s, %s)', [
                                 user.username, user.name, user.email, user.password])
-        return None
+            return None
+        else:
+            return f"This user is alredy register"
+
 
     def login_valid(self, username, password):
         rows = self._connection.execute(
