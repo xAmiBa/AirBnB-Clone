@@ -12,6 +12,8 @@ app = Flask(__name__)
 def get_homepage():
     return render_template('index.html')
 
+
+#### ALL ROUTES ARE COMMENTED OUT FOR FUTURE USE, JUST UNCOMMENT TO USE
 # [GET][POST] /login
 # Returns the login page with login form
 # Posts and validates login details to databade
