@@ -56,7 +56,7 @@ Properties:
 - self.description - STRING
 - self.price - FLOAT
 - self.availability_from - STRING
-- self.availability_to - STRING
+- self.availability_till - STRING
 - self.calendar - DICT (date:boolean)
 
 ## Space_repository
@@ -65,11 +65,14 @@ Properties:
 - add_space()
 
 ## Request
-- self.
+- self.id
+- self.space_id
+- self.request_user_id
+- self.status
 
 ## Request_repository
-| id | requested_date | space_id | request_user_id | status|
-|-----------------|-----------------|-----------------|-----------------|-----------------|
+| id | space_id | request_user_id | status|
+|-----------------|-----------------|-----------------|-----------------|
 - add_request()
 - approve_request()
 
