@@ -14,15 +14,12 @@ class User_repository:
     def add_user(self, user):
         name_rows = self._connection.execute(
             'SELECT * from users WHERE username = %s', [user.name])
-        if name_rows == []:
-                email_rows =  self._connection.execute(
+        email_rows =  self._connection.execute(
                         'SELECT * from users WHERE email = %s', [user.email])
-                if email_rows == []:
-                    self._connection.execute('INSERT INTO users (username, name, email, password) VALUES (%s, %s, %s, %s)', [
-                                user.username, user.name, user.email, user.password])
-                    return None
-                else:
-                    return f"This user is alredy register"
+        if name_rows == [] and email_rows == []::
+            self._connection.execute('INSERT INTO users (username, name, email, password) VALUES (%s, %s, %s, %s)', [
+                        user.username, user.name, user.email, user.password])
+            return None
         else:
             return f"This user is alredy register"
 
