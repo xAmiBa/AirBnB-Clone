@@ -29,7 +29,7 @@ def test_add_new_user(db_connection):
     assert users == [User(1,'Amina_1', 'Amina', 'Amina@mail.com','Amina123!'), \
                     User(2, 'Jake_1', 'Jake', 'Jake@mail.com','Jake123!'), \
                     User(3, 'Sudhansh_1', 'Sudhansh', 'Sudhansh@mail.com','Sudhansh123!'), \
-                    User(4, "Gin_71", "Gina", "gina@mail.com", "Gina123!")]
+                    User(4, "Gin_71", "Gina", "gina@mail.com", "Gina123!")] 
 
 """
 Loging a valid user
