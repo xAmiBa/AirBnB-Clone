@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="yPNq86xGGYnL_QCuuR5Q" name="Page-1">
-        <mxGraphModel dx="1007" dy="719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
+        <mxGraphModel dx="793" dy="719" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -220,24 +220,6 @@
                 <mxCell id="136" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="800" y="1510" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="138" value="Start_date" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="80" y="1650" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="141" value="Avalible" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="200" y="1650" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="190" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="143" target="144">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="143" value="&amp;lt; - inbetween dates - &amp;gt;" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="80" y="1710" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="144" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="200" y="1710" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="164" value="Calender" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="80" y="1630" width="240" height="20" as="geometry"/>
-                </mxCell>
                 <mxCell id="167" value="App.py" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
                     <mxGeometry x="830" y="110" width="250" height="116" as="geometry"/>
                 </mxCell>
@@ -248,25 +230,25 @@
                     <mxGeometry y="34" width="250" height="82" as="geometry"/>
                 </mxCell>
                 <mxCell id="171" value="Requests" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-                    <mxGeometry x="80" y="320" width="250" height="180" as="geometry"/>
+                    <mxGeometry x="80" y="320" width="250" height="210" as="geometry"/>
                 </mxCell>
-                <mxCell id="172" value="request_date : string&#10;space_id : int&#10;request_user_id : int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="171">
-                    <mxGeometry y="26" width="250" height="64" as="geometry"/>
+                <mxCell id="172" value="ID : int&#10;requested_date : string&#10;space_id : int&#10;request_user_id : int&#10;status : boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="171">
+                    <mxGeometry y="26" width="250" height="94" as="geometry"/>
                 </mxCell>
                 <mxCell id="173" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="171">
-                    <mxGeometry y="90" width="250" height="8" as="geometry"/>
+                    <mxGeometry y="120" width="250" height="8" as="geometry"/>
                 </mxCell>
                 <mxCell id="174" value="+ method(type): type&#10;__init__: na&#10;__eq__: na&#10;__repr__:na" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="171">
-                    <mxGeometry y="98" width="250" height="82" as="geometry"/>
+                    <mxGeometry y="128" width="250" height="82" as="geometry"/>
                 </mxCell>
                 <mxCell id="175" value="Requests_repository" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
-                    <mxGeometry x="370" y="310" width="250" height="130" as="geometry"/>
+                    <mxGeometry x="370" y="310" width="250" height="136" as="geometry"/>
                 </mxCell>
                 <mxCell id="177" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="175">
-                    <mxGeometry y="26" width="250" height="8" as="geometry"/>
+                    <mxGeometry y="26" width="250" height="14" as="geometry"/>
                 </mxCell>
-                <mxCell id="178" value="+ method(type): type&#10;__init__: na&#10;__eq__: na&#10;__repr__:na&#10;add_request : request" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="175">
-                    <mxGeometry y="34" width="250" height="96" as="geometry"/>
+                <mxCell id="178" value="+ method(type): type&#10;__init__: na&#10;add_request : request&#10;approve_request " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="175">
+                    <mxGeometry y="40" width="250" height="96" as="geometry"/>
                 </mxCell>
                 <mxCell id="183" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="920" y="1330" width="120" height="60" as="geometry"/>
@@ -279,12 +261,6 @@
                 </mxCell>
                 <mxCell id="187" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="920" y="1390" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="188" value="End_date" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="80" y="1770" width="120" height="60" as="geometry"/>
-                </mxCell>
-                <mxCell id="189" value="" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="200" y="1770" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="191" value="Calendar Dictionary&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="360" y="690" width="260" height="20" as="geometry"/>
@@ -301,7 +277,6 @@
                         <mxPoint x="460" y="620" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-
             </root>
         </mxGraphModel>
     </diagram>
