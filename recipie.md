@@ -85,7 +85,14 @@ DATE FORMAT = dd/mm/yy
 
 
 
-
+# Sitemap
+- [GET] /
+    - [GET][POST] /login (new session initialised)
+    - [GET][POST] /signup
+    - [GET] /spaces
+        - [GET][POST] /spaces/new
+        - [GET][POST] /spaces/<space.id>
+    - [GET][POST] /requests
 
 
 
