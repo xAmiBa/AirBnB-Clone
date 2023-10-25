@@ -47,7 +47,9 @@ def post_signup():
         return render_template('index.html')
     # if there are errors, we print them
     else:
-        return render_template('signup.html', errors=errors)
+        message = "Thank you, you are signed up! Now login."
+        return render_template('signup.html', errors=errors, message=message)
+
 # [GET] /spaces
 # Returns page with all spaces listed
 # @app.route('/spaces', methods=['GET'])
@@ -58,8 +60,9 @@ def post_signup():
 # @app.route('/spaces/new', methods=['GET'])
 # @app.route('/spaces/new', methods=['POST'])
 
-# [GET] /spaces/<id>
+# [GET][POST] /spaces/<id>
 # Returns page specific space by its' id with calendar to choose a booking date
+# This is a page where user post a request
 # Posts a new reuest for booking a space
 # @app.route('/spaces/<id>', methods=['GET'])
 # @app.route('/spaces/<id>', methods=['POST'])
