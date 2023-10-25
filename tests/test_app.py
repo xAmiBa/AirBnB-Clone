@@ -41,10 +41,12 @@ def test_for_incorrect_login(page, test_web_address):
     page.fill("input[name=password]", "tony")
     page.click("text=Login")
     errors_tag = page.locator(".t-errors")
+    errors_tag.wait_for_selector_state({"state": "attached"})
     page.screenshot(path="screenshot.png", full_page=True)
-    expect(errors_tag).to_have_text(
-        ["There were errors with your submission:\n\n\n Incorrect details. \n\n"]
-        )
+    # Check the content of the error message
+    expect(errors_tag.locator("div").innerText()).to_be("There were errors with your submission:\n\n Incorrect details.")
+    
+    
     
 
 """
