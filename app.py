@@ -39,7 +39,7 @@ def login():
     if new_repo.login_valid(username, password) == True:
         # starts a new session
         session['username'] = username
-        return redirect('spaces.html')
+        return redirect('spaces')
     
     else:
         flash('Invalid username or password. Please try again.')  # Store an error message
