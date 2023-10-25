@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, session, flash
 from lib.database_connection import get_flask_database_connection
 from lib.Space_repository import Space_repository
 from lib.Space import Space
@@ -23,7 +23,29 @@ def get_homepage():
 # Posts and validates login details to databade
 # If login is validated,  creates new session
 # @app.route('/login', methods=['GET'])
-# @app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET'])
+def open_login():
+    return render_template('login.html')
+
+# Route for processing the login form submission
+@app.route('/login', methods=['POST'])
+def login():
+    # Retrieve login details from the form
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    new_repo = User_repository()
+
+    if new_repo.login_valid(username, password) == True:
+        # starts a new session
+        session['username'] = username
+        return redirect('spaces')
+    
+    else:
+        flash('Invalid username or password. Please try again.')  # Store an error message
+        return redirect('login') 
+
+
 
 # [GET][POST] /signup
 # Returns the signup page with signup form
