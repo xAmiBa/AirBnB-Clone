@@ -41,3 +41,16 @@ def test_for_error_exiting_user_signup(page, test_web_address):
         )
     
     
+def test_for_incorrect_login(page, test_web_address):
+    # go to page
+    page.goto(f"http://{test_web_address}/login")
+    # input details
+    page.fill("input[name=email]", "tony@test.com")
+    page.fill("input[name=password]", "tony")
+    page.click("text=Login")
+    errors_tag = page.locator(".t-errors")
+    page.screenshot(path="screenshot.png", full_page=True)
+    expect(errors_tag).to_have_text(
+        ["There were errors with your submission:\n\n\n Incorrect details. \n\n"]
+        )
+    

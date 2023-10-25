@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect, redirect, session
+from flask import Flask, request, render_template, redirect, redirect, session, flash
 from lib.database_connection import get_flask_database_connection
 from lib.User_repository import User_repository
 from lib.User import User
@@ -36,12 +36,11 @@ def login():
     if new_repo.login_valid(username, password) == True:
         # starts a new session
         session['username'] = username
-        return render_template('spaces.html')
+        return redirect('spaces.html')
     
-    elif new_repo.login_valid(username, password) == False:
-        # wait and allow resubmission
-        print ("incorrect details")
-        return render_template('login.html')
+    else:
+        flash('Invalid username or password. Please try again.')  # Store an error message
+        return redirect('login') 
 
 
 
