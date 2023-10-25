@@ -6,18 +6,19 @@
     </head>
     <body>
         <h1>Book a Space</h1>
-        <ul>
             <p>
-            <input type = 'Submit' value = 'List a Space'>
+            <a href = "/spaces/new"><input type = 'Submit' value = 'List a Space'></a>
             </p>
-            <div>
+            <div class="t-space-container">
             {% for space in spaces %}
-                <li>
-                <a name="name" href="/spaces/{{space.id}}">{{space.name}}</a>
-                <a name="description" href="/spaces/{{space.id}}">{{space.description}}</a>
-                </li>
+                    <a name="name" href="/spaces/{{space.id}}">
+                <div class="t-space">
+                        <p>{{space.name}}</p>
+                        <p>{{space.description}}</p>
+                </div>
+                    </a>
+                    <br>
             {% endfor %}
             </div>
-        </ul>
     </body>
 </html>
