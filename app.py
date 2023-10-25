@@ -1,8 +1,11 @@
 import os
 from flask import Flask, request, render_template, redirect
 from lib.database_connection import get_flask_database_connection
+from lib.Space_repository import Space_repository
+from lib.Space import Space
 from lib.User_repository import User_repository
 from lib.User import User
+
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -59,6 +62,24 @@ def post_signup():
 # Posts a new space listing
 # @app.route('/spaces/new', methods=['GET'])
 # @app.route('/spaces/new', methods=['POST'])
+
+@app.route('/spaces/new', methods = ['GET', 'POST'])
+def new_space():
+    connection = get_flask_database_connection(app)
+    repository = Space_repository(connection)
+    if request.method == 'GET':
+        space_repository = Space_repository(connection)
+        lst = space_repository.all_spaces()
+        return render_template('new_space.html', spaces =lst)
+    elif request.method == 'POST':
+        name = request.form['name']
+        description = request.form['description']
+        price = request.form['price']
+        available_from = request.form['available_from']
+        available_to = request.form['available_to']
+
+        repository.add_space(Space(name, description, price, available_from, available_to))
+        return redirect(f"/spaces")
 
 # [GET] /spaces/<id> -- template = spaces
 # Returns page specific space by its' id with calendar to choose a booking date
