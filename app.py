@@ -15,7 +15,7 @@ def get_homepage():
 
 
 #### ALL ROUTES ARE COMMENTED OUT FOR FUTURE USE, JUST UNCOMMENT TO USE
-# [GET][POST] /login
+# [GET][POST] /login 
 # Returns the login page with login form
 # Posts and validates login details to databade
 # If login is validated,  creates new session
@@ -50,24 +50,24 @@ def post_signup():
         message = "Thank you, you are signed up! Now login."
         return render_template('signup.html', errors=errors, message=message)
 
-# [GET] /spaces
+# [GET] /spaces -- template = spaces
 # Returns page with all spaces listed
 # @app.route('/spaces', methods=['GET'])
 
-# [GET][POST] /spaces/new
+# [GET][POST] /spaces/new -- template = new_place.html
 # Returns page with all spaces listed
 # Posts a new space listing
 # @app.route('/spaces/new', methods=['GET'])
 # @app.route('/spaces/new', methods=['POST'])
 
-# [GET][POST] /spaces/<id>
+# [GET] /spaces/<id> -- template = spaces
 # Returns page specific space by its' id with calendar to choose a booking date
 # This is a page where user post a request
 # Posts a new reuest for booking a space
 # @app.route('/spaces/<id>', methods=['GET'])
 # @app.route('/spaces/<id>', methods=['POST'])
 
-# [GET][POST] /requests
+# [GET][POST] /requests - template: request.html
 # Returns page with all requests sent to the owner
 # Posts accepted request or rejected request (availability of space changes)
 # @app.route('/requests', methods=['GET'])
