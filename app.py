@@ -1,6 +1,7 @@
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, request, session
 from lib.database_connection import get_flask_database_connection
+from lib.User_repository import *
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -18,7 +19,23 @@ def get_homepage():
 # Posts and validates login details to databade
 # If login is validated,  creates new session
 # @app.route('/login', methods=['GET'])
-# @app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET'])
+def open_login():
+    return render_template('login.html')
+
+# Route for processing the login form submission
+@app.route('/login', methods=['POST'])
+def login():
+    # Retrieve login details from the form
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    new_repo = User_repository()
+    new_repo.login_valid(username, password)
+    
+    session['username'] = username
+
+
 
 # [GET][POST] /signup
 # Returns the signup page with signup form
