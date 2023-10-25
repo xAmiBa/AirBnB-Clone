@@ -78,6 +78,12 @@ def post_signup():
 # [GET] /spaces -- template = spaces
 # Returns page with all spaces listed
 # @app.route('/spaces', methods=['GET'])
+@app.route('/spaces', methods = ['GET'])
+def spaces_list():
+    connection = get_flask_database_connection(app)
+    space_repository = Space_repository(connection)
+    lst = space_repository.all_spaces()
+    return render_template('spaces.html', spaces =lst)
 
 # [GET][POST] /spaces/new -- template = new_place.html
 # Returns page with all spaces listed
@@ -96,12 +102,11 @@ def new_space():
     elif request.method == 'POST':
         name = request.form['name']
         description = request.form['description']
-        price = request.form['price']
+        price = float(request.form['price'])
         available_from = request.form['available_from']
-        available_to = request.form['available_to']
-
-        repository.add_space(Space(name, description, price, available_from, available_to))
-        return redirect(f"/spaces")
+        available_till = request.form['available_till']
+        repository.add_space(Space(None,name, description, price, available_from, available_till, ""))
+        return redirect('/spaces')
 
 # [GET] /spaces/<id> -- template = spaces
 # Returns page specific space by its' id with calendar to choose a booking date

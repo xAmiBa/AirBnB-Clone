@@ -5,6 +5,19 @@
         <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
-        <h1>This is the homepage.</h1>
+        <h1>Book a Space</h1>
+        <ul>
+            <p>
+            <input type = 'Submit' value = 'List a Space'>
+            </p>
+            <div>
+            {% for space in spaces %}
+                <li>
+                <a name="name" href="/spaces/{{space.id}}">{{space.name}}</a>
+                <a name="description" href="/spaces/{{space.id}}">{{space.description}}</a>
+                </li>
+            {% endfor %}
+            </div>
+        </ul>
     </body>
 </html>
