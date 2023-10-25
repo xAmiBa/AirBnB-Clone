@@ -3,6 +3,10 @@ from flask import Flask, request, render_template, redirect
 from lib.database_connection import get_flask_database_connection
 from lib.User_repository import User_repository
 from lib.User import User
+from lib.Space_repository import Space_repository
+from lib.Space import Space
+from lib.request import Request
+from lib.request_repository import Request_repository
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -67,11 +71,36 @@ def post_signup():
 # @app.route('/spaces/<id>', methods=['GET'])
 # @app.route('/spaces/<id>', methods=['POST'])
 
+'''NOT IN USE'''
 # [GET][POST] /requests - template: request.html
 # Returns page with all requests sent to the owner
 # Posts accepted request or rejected request (availability of space changes)
 # @app.route('/requests', methods=['GET'])
 # @app.route('/requests', methods=['POST'])
+
+# [GET][POST] /space/<id>/requests - template: request.html
+# Returns page specific space by its' id with associated requests
+# This is a page where user (ideally only owner of the space)
+# Posts accepted request or rejected request (updating availability)
+# @app.route('/spaces/<id>/requests', methods=['GET', 'POST])
+@app.route('/spaces/<id>/requests', methods=['GET'])
+def get_space_requests(id):
+    connection = get_flask_database_connection(app)
+    connection.connect()
+    space_repo = Space_repository(connection)
+    spaces = space_repo.all_spaces()
+
+    request_repo = Request_repository(connection)
+    request_list = request_repo.get_all_requests()
+
+    space = space_repo[id-1]
+    space_name = space.name
+
+    return render_template('request.html', name=space_name, requests=request_list)
+    
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
