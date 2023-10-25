@@ -86,7 +86,13 @@ CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
 CREATE TABLE requests (
     id SERIAL PRIMARY KEY,
     request_user_id int,
+    CONSTRAINT fk_user_id FOREIGN KEY (request_user_id)
+    REFERENCES users(request_user_id)
+    ON DELETE CASCADE
     space_id int,
+    CONSTRAINT fk_space_id FOREIGN KEY (space_id)
+    REFERENCES spaces(space_id)
+    ON DELETE CASCADE
     requested_date text,
     status boolean
 );
