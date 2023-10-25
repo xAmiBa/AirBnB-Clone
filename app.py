@@ -32,9 +32,11 @@ def login():
     password = request.form.get('password')
 
     new_repo = User_repository()
-    new_repo.login_valid(username, password)
-    
-    session['username'] = username
+
+    if new_repo.login_valid(username, password) == True:
+        # starts a new session
+        session['username'] = username
+        return render_template
 
 
 
