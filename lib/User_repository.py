@@ -24,10 +24,8 @@ class User_repository:
     # returns False if username or email already exists
     # returns True if username and email are unique
     def validate_new_user(self, user):
-        name_rows = self._connection.execute(
-            'SELECT * from users WHERE username = %s', [user.username])
-        email_rows =  self._connection.execute(
-            'SELECT * from users WHERE email = %s', [user.email])
+        name_rows = self._connection.execute('SELECT * from users WHERE username = %s;', [user.username])
+        email_rows =  self._connection.execute('SELECT * from users WHERE email = %s;', [user.email])
         if name_rows == [] or email_rows == []:
             return True
         else:
@@ -60,7 +58,7 @@ class User_repository:
         
         if "@" not in user_object.email:
             errors.append("I doesn't look like correct email.")
-            
+
         if self.validate_new_user(user_object) == False:
             errors.append("This email or username is alredy registered.")
         return errors

@@ -41,14 +41,14 @@ def post_signup():
 
     new_user = User(None, username, name, email, password)
     errors = user_repository.generate_errors(new_user)
-    # if there are errors, we print them
-    if errors == []:
-        return render_template('index.html')
     # if there are no errors, user is added
-    else:
+    if errors == []:
         user_repository.add_user(new_user)
         message = "Thank you, you are signed up! Now login."
         return render_template('signup.html', errors=errors, message=message)
+    # if there are errors, we print them
+    else:
+        return render_template('signup.html', errors=errors)
 
 # [GET] /spaces
 # Returns page with all spaces listed

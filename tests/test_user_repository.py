@@ -84,3 +84,14 @@ def test_error_user_argument_empty(db_connection):
         "Name cannot be empty.",
         "Password cannot be empty."
     ]
+
+"""
+Generating error when user exists
+"""
+def test_error_user_exists(db_connection):
+    db_connection.seed("seeds/db_makers_bnb.sql")
+    repository = User_repository(db_connection)
+    user = User(None, "Jake_1", "something", 'Sudhansh@mail.com', "ksdgfkjsd")
+    assert repository.generate_errors(user) == [
+        "This email or username is alredy registered."
+    ]
