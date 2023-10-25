@@ -61,11 +61,6 @@ VALUES (
 -- psql -h 127.0.0.1 MAKERS_BNB < seeds/db_makers_bnb.sql
 -- psql -h 127.0.0.1 MAKERS_BNB_TEST < seeds/db_makers_bnb.sql
 
-
--- Write file into database in terminal
--- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
--- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
-
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS users_id_seq;
 
@@ -90,9 +85,41 @@ INSERT INTO users (username, name, email, password) VALUES ('Sudhansh_1', 'Sudha
 -- -- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
 -- -- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
 
+-- ### request tables over
+-- REQUEST TAABLES #############
 
+-- First, we must delete (drop) all our tables
 
+DROP TABLE IF EXISTS requests;
+DROP SEQUENCE IF EXISTS requests_id_seq;
 
+-- Then, we recreate them
+CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
+CREATE TABLE requests (
+    id SERIAL PRIMARY KEY,
+    request_user_id int,
+    space_id int,
+    requested_date text,
+    status boolean
+);
+
+-- request 1 
+INSERT INTO requests (request_user_id, space_id, requested_date, status) 
+VALUES (1,2, '12/12/23',FALSE);
+
+-- request 2 
+INSERT INTO requests (request_user_id, space_id, requested_date, status) 
+VALUES (2,3,'03/08/23',FALSE);
+
+-- Write file into database in terminal
+-- psql -h 127.0.0.1 MAKERS_BNB < seeds/db_requests_seed.sql
+-- psql -h 127.0.0.1 MAKERS_BNB_TEST < seeds/db_requests_seed.sql
+
+-- -- Write file into database in terminal
+-- -- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
+-- -- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
+
+-- ### request tables over
 
 
 
