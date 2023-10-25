@@ -27,7 +27,7 @@ def test_for_error_exiting_user_signup(page, test_web_address):
     page.fill("input[name=password]", "Test password")
     page.click("text=Signup to MarkersBnB")
     errors_tag = page.locator(".t-errors")
-    page.screenshot(path="screenshot.png", full_page=True)
+    # page.screenshot(path="screenshot.png", full_page=True)
     expect(errors_tag).to_have_text(
         ["There were errors with your submission:\n\n\nThis email or username is alredy registered.\n\n"]
         )
@@ -41,10 +41,9 @@ def test_for_incorrect_login(page, test_web_address):
     page.fill("input[name=password]", "tony")
     page.click("text=Login")
     errors_tag = page.locator(".t-errors")
-    errors_tag.wait_for_selector_state({"state": "attached"})
     page.screenshot(path="screenshot.png", full_page=True)
     # Check the content of the error message
-    expect(errors_tag.locator("div").innerText()).to_be("There were errors with your submission:\n\n Incorrect details.")
+    expect(errors_tag).to_have_text("There were errors with your submission:\n\n Incorrect details.")
     
     
     
