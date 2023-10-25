@@ -16,7 +16,7 @@ class User_repository:
             'SELECT * from users WHERE username = %s', [user.name])
         email_rows =  self._connection.execute(
                         'SELECT * from users WHERE email = %s', [user.email])
-        if name_rows == [] and email_rows == []::
+        if name_rows == [] and email_rows == []:
             self._connection.execute('INSERT INTO users (username, name, email, password) VALUES (%s, %s, %s, %s)', [
                         user.username, user.name, user.email, user.password])
             return None

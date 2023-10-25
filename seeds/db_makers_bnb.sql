@@ -81,7 +81,6 @@ INSERT INTO users (username, name, email, password) VALUES ('Sudhansh_1', 'Sudha
 -- Write file into database in terminal
 -- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
 -- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
-=======
 -- -- Write file into database in terminal
 -- -- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
 -- -- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
