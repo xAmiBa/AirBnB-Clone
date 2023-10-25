@@ -45,6 +45,17 @@ def test_for_incorrect_login(page, test_web_address):
     # Check the content of the error message
     expect(errors_tag).to_have_text("There were errors with your submission:\n\n Incorrect details.")
     
+def test_good_login(page, test_web_address):
+    # go to page
+    page.goto(f"http://{test_web_address}/login")
+    # input details
+    page.fill("input[name=email]", "Amina@mail.com")
+    page.fill("input[name=password]", "Amina123!")
+    page.click("text=Login")
+    errors_tag = page.locator(".t-errors")
+    page.screenshot(path="screenshot.png", full_page=True)
+    # Check the tracvelled to spaces
+    # expect('spaces.html')             - HAS TO BE DONE
     
     
 
