@@ -19,7 +19,7 @@ class Request_repository:
         requests = []
         for row in rows:
                     # setting requests with the 5 variables
-            item = Request( row["request_user_id"], row["space_id"], row["requested_date"], row["status"])
+            item = Request( row["id"], row["request_user_id"], row["space_id"], row["requested_date"], row["status"])
             requests.append(item)
         return requests
 

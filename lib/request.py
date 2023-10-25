@@ -2,10 +2,10 @@
 
 class Request:
 
-    def __init__(self, request_user_id, space_id, requested_date, status ):
+    def __init__(self, id, request_user_id, space_id, requested_date, status ):
         
         #initialised variables
-        self.id = int (id)
+        self.id =  id
         self.request_user_id = int (request_user_id)
         self.space_id = int (space_id)
         self.requested_date = str (requested_date)
@@ -19,6 +19,7 @@ class Request:
     def __eq__(self, other):
         if isinstance(other, Request):
             return (
+                self.id == other.id and
                 self.request_user_id == other.request_user_id and
                 self.space_id == other.space_id and
                 self.requested_date == other.requested_date and
