@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>MakersBnB</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+        }
+        .title {
+            text-align: left;
+        }
+        .link {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>MakersBnB</h1>
+    </div>
+    <div class="container">
+        <h3>Welcome to MakersBnb - Your Gateway to Forgettable Spaces!</h3>
+        <div class="central-box">
+            <form>
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+    <div class="link">
+        <a href="/about">About</a>
+    </div>
+</body>
+</html>
