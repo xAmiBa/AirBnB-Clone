@@ -37,20 +37,24 @@
 </head>
 <body>
     <h1>Requests</h1>
+    <form action="/load_request" method="POST">
     <p>Showing results for: {{ name }}</p>
     <div class="container">
         <div class="column">
             {% for request in requests %}
             <div class="entry">
-                <button>{{request.requested_date}} 
+                <button type="submit" name="request_id" value="{{ request.id }}">
+                {{request.requested_date}} 
                 {% if request.status %}
-                <br> Confirmed </button>
+                <br> Confirmed 
                 {% else %}
-                <br> Not Confirmed </button>
-                { % endif % }
+                <br> Not Confirmed
+                {% endif %}
+                </button>
             </div>
-            { % endfor % }
+            {% endfor %}
         </div>
     </div>
+    </form>
 </body>
 </html>

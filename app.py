@@ -97,7 +97,37 @@ def get_space_requests(id):
     space_name = space.name
 
     return render_template('request.html', name=space_name, requests=request_list)
-    
+
+
+#Redirects to relevant request page
+@app.route('/load_request', methods=['POST'])
+def load_request():
+    id = request.form['request_id']
+    return redirect(f"/requests/{id}")
+
+@app.route('/requests/<id>', methods=['GET'])
+def get_request_details(id):
+    connection = get_flask_database_connection(app)
+    connection.connect()
+
+    user_repo = User_repository(connection)
+    users = user_repo.all()
+
+
+    space_repo = Space_repository(connection)
+    spaces = space_repo.all_spaces()
+
+    request_repo = Request_repository(connection)
+    request_list = request_repo.get_all_requests()
+
+    _request = request_repo[id-1]
+
+    space = spaces[_request.space_id-1]
+    space_name = space.name
+
+    _user = users[_request.request_user_id-1]
+
+    return render_template('request_details.html', name=space_name, date=_request.requested_date, user=_user.name)
 
 
 

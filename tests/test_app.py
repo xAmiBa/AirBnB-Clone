@@ -40,4 +40,6 @@ def test_for_error_exiting_user_signup(page, test_web_address):
         ["There were errors with your submission:\n\n\nThis email or username is alredy registered.\n\n"]
         )
     
-    
+def test_for_list_of_space_requests(page, test_web_address):
+    pass
+
