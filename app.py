@@ -36,7 +36,12 @@ def login():
     if new_repo.login_valid(username, password) == True:
         # starts a new session
         session['username'] = username
-        return render_template
+        return render_template('spaces.html')
+    
+    elif new_repo.login_valid(username, password) == False:
+        # wait and allow resubmission
+        print ("incorrect details")
+        return render_template('login.html')
 
 
 
