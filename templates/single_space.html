@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>View space | MakersBnB</title>
+        <link rel="stylesheet" href="/static/style.css" >
+    </head>
+    <body>
+        <h1>{{ space.name }}</h1>
+        <p class="price">Price per night: £{{ space.price }}</p>
+        <p class="description">{{ space.description }}</p>
+
+        <form methods="POST">
+            <!-- user selects available date to book a space -->
+            <select name="calendar" id="calendar">
+                {% for date in calendar %}
+                <!-- safe tells htm to not escape values as it's html code -->
+                {{ date|safe }}<br>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Send a booking request">
+        </form>
+        <p class="message">
+            {% if message %}
+            {{ message }}
+            {% endif %}
+        </p>
+    </body>
+</html>

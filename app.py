@@ -1,11 +1,12 @@
 import os
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for
 from lib.database_connection import get_flask_database_connection
 from lib.Space_repository import Space_repository
 from lib.Space import Space
 from lib.User_repository import User_repository
 from lib.User import User
-
+from lib.request_repository import Request_repository
+from lib.request import Request
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -85,8 +86,40 @@ def new_space():
 # Returns page specific space by its' id with calendar to choose a booking date
 # This is a page where user post a request
 # Posts a new reuest for booking a space
-# @app.route('/spaces/<id>', methods=['GET'])
-# @app.route('/spaces/<id>', methods=['POST'])
+@app.route('/spaces/<id>', methods=['GET'])
+def get_single_space(id):
+    print("got to get")
+    connection = get_flask_database_connection(app)
+    message1 = request.args.get('arg1')
+    print(f"REQUESTS: {request.args}")
+    print(f"this is the message:{message1}")
+    # get space object and pass to in jinja args
+    space_repository = Space_repository(connection)
+    space = space_repository.search_by_id(id)
+
+    # get available dates for the space and display dropdown calendar
+    calendar = space_repository.get_dates_by_id(id)
+
+    return render_template('single_space.html', space=space, calendar=calendar, message=message1)
+
+@app.route('/spaces/<id>', methods=['POST'])
+def post_request_for_single_space(id):
+    connection = get_flask_database_connection(app)
+    request_repository = Request_repository(connection)
+
+    requested_date = request.form("calendar") #TODO is calendar ref id to chosen date?
+    # request_user_id TODO: need Jake's session
+
+    # TODO: get all data to post new request: request_user_id, space_id, requested_date, status
+    # new_request = Request(None, request_user_id, id, requested_date, False)
+    # request_repository.add_request(new_request)
+    message = "Thank you for your request!"
+
+    space_repository = Space_repository(connection)
+    space = space_repository.search_by_id(id)
+    calendar = space_repository.get_dates_by_id(id)
+
+    return redirect(url_for('/spaces/<id>', arg1=message))
 
 # [GET][POST] /requests - template: request.html
 # Returns page with all requests sent to the owner

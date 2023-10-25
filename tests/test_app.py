@@ -67,3 +67,26 @@ def test_for_error_exiting_user_signup(page, test_web_address):
 
     # name_element = page.locator(".t-available_to")
     # expect(name_element).to_have_text("01/02/2024")    
+
+"""
+When I access /space/<id> I see space information
+"""
+def test_for_single_space(page, test_web_address):
+    page.goto(f"http://{test_web_address}/spaces/2")
+    h1_tag = page.locator("h1")
+    expect(h1_tag).to_have_text("Modern Urban Loft")
+
+    price_tag = page.locator(".price")
+    expect(price_tag).to_have_text("Price per night: £200")
+
+    description_tag = page.locator(".description")
+    expect(description_tag).to_have_text('Experience city living at its finest in this stylish urban loft. With modern amenities and a prime downtown location, this loft is ideal for urban explorers and business travelers.')
+
+"""
+Whet user submits a request, they see a thank you message
+"""
+def test_for_submit_request(page, test_web_address):
+    page.goto(f"http://{test_web_address}/spaces/2")
+    page.click("text=Send a booking request")
+    message_tag = page.locator(".message")
+    expect(message_tag).to_have_text("Thank you for your request!")
