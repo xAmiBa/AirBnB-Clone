@@ -20,5 +20,5 @@ class Space_repository():
 
     def add_space(self, space_object):
         self._connection.execute("INSERT INTO spaces (name, description, price, availability_from, availability_till, calendar) "\
-                                 "VALUES (%s, %s, %s, %s, %s, %s)",
-                                 [space_object.name, space_object.description, space_object.price, space_object.availability_from, space_object.availability_till, space_object.calendar])
+                                "VALUES (%s, %s, %s, %s, %s, %s)",
+                                [space_object.name, space_object.description, space_object.price, space_object.availability_from, space_object.availability_till, space_object.calendar])
