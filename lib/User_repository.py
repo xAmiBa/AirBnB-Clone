@@ -43,9 +43,9 @@ class User_repository:
         if rows != []:
             row = rows[0]
             valid_user = User(row["id"], row["username"], row["name"], row["email"], row["password"])
-            return f"Welcome {valid_user.name}"
+            return True
         else:
-            return f"Username or password is not valid"
+            return False
 
     def generate_errors(self, user_object):
         errors = []
