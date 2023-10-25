@@ -89,12 +89,6 @@ CREATE TABLE requests (
     space_id int,
     requested_date text,
     status boolean
-    CONSTRAINT fk_user_id FOREIGN KEY (request_user_id)
-    REFERENCES users(request_user_id)
-    ON DELETE CASCADE,
-    CONSTRAINT fk_space_id FOREIGN KEY (space_id)
-    REFERENCES spaces(space_id)
-    ON DELETE CASCADE
 );
 
 -- request 1 
