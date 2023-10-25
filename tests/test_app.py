@@ -15,13 +15,13 @@ def test_get_signup(page, test_web_address):
     expect(h1_tag).to_have_text("Signup to MakersBnB")
 
 
-# def test_for_signup_errors(page, test_web_address):
-#     page.goto(f"http://{test_web_address}/signup")
-#     page.fill("input[name=name]", "Test name")
-#     page.fill("input[name=username]", "Test username")
-#     page.fill("input[name=email]", "Wrong email")
-#     page.fill("input[name=password]", "Test password")
-#     page.click("text=signup")
-#     h2_tag = page.locator("h2")
-#     expect(h2_tag).to_have_text("Thank you, you are signed up! Now login.")
+def test_for_signup_errors(page, test_web_address):
+    page.goto(f"http://{test_web_address}/signup")
+    page.fill("input[name=name]", "Test name")
+    page.fill("input[name=username]", "Test username")
+    page.fill("input[name=email]", "Wrong email")
+    page.fill("input[name=password]", "Test password")
+    page.click("text=signup")
+    h2_tag = page.locator("h2")
+    expect(h2_tag).to_have_text("Thank you, you are signed up! Now login.")
     
