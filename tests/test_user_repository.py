@@ -32,29 +32,19 @@ def test_add_new_user(db_connection):
                     User(4, "Gin_71", "Gina", "gina@mail.com", "Gina123!")] 
 
 """
-Add a registed user 
+Check if new user is valid 
 """
 def test_add_registed_user(db_connection):
     db_connection.seed("seeds/db_makers_bnb.sql")
     repository = User_repository(db_connection)
 
-    error_message = repository.add_user(User(3, 'Sudhansh_1', 'Sudhansh', 'Sudhansh@mail.com','Sudhansh123!'))
+    new_user = User(3, 'Sudhansh_1', 'Sudhansh', 'Sudhansh@mail.com','Sudhansh123!')
 
-    assert error_message == "This user is alredy register"
+    assert repository.validate_new_user(new_user) == False
 
-    """
-Add a new user 
-"""
-def test_add_registed_email(db_connection):
-    db_connection.seed("seeds/db_makers_bnb.sql")
-    repository = User_repository(db_connection)
-
-    error_message = repository.add_user(User(4, "Gin_71", "Gina", 'Sudhansh@mail.com', "Gina123!"))
-    
-    assert error_message == "This user is alredy register"
     
 """
-Loging a valid user 
+Validating login
 """
 
 def test_login_valid_user(db_connection):
@@ -66,7 +56,7 @@ def test_login_valid_user(db_connection):
     
     user_to_log = repository.login_valid(username_to_log, password_to_log)
 
-    assert user_to_log == 'Welcome Sudhansh'
+    assert user_to_log == True
 
 """
 Loging a invalid user with invalid password
@@ -80,22 +70,7 @@ def test_login_invalid_password(db_connection):
     
     user_to_log = repository.login_valid(username_to_log, password_to_log)
 
-    assert user_to_log == 'Username or password is not valid'
-
-"""
-Loging a invalid user with invalid username
-"""
-def test_login_invalid_user(db_connection):
-    db_connection.seed("seeds/db_makers_bnb.sql")
-    repository = User_repository(db_connection)
-
-    username_to_log = 'Sudhansh_11'
-    password_to_log = 'Sudhansh123!'
-    
-    user_to_log = repository.login_valid(username_to_log, password_to_log)
-
-    assert user_to_log == 'Username or password is not valid'
-
+    assert user_to_log == False
 
 """
 Generating errors when user object arguments

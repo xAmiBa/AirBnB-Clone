@@ -15,28 +15,37 @@ class User_repository:
         name_rows = self._connection.execute(
             'SELECT * from users WHERE username = %s', [user.name])
         email_rows =  self._connection.execute(
-                        'SELECT * from users WHERE email = %s', [user.email])
-        if name_rows == [] and email_rows == []:
+            'SELECT * from users WHERE email = %s', [user.email])
+        if name_rows == [] or email_rows == []:
             self._connection.execute('INSERT INTO users (username, name, email, password) VALUES (%s, %s, %s, %s)', [
                         user.username, user.name, user.email, user.password])
-            return None
+        return None
+    
+    # returns False if username or email already exists
+    # returns True if username and email are unique
+    def validate_new_user(self, user):
+        name_rows = self._connection.execute(
+            'SELECT * from users WHERE username = %s', [user.username])
+        email_rows =  self._connection.execute(
+            'SELECT * from users WHERE email = %s', [user.email])
+        if name_rows == [] or email_rows == []:
+            return True
         else:
-            return f"This user is alredy register"
-
-
+            return False
+    
+    # returns True if username matches password in databas
+    # False if not
     def login_valid(self, username, password):
         rows = self._connection.execute(
             'SELECT * from users WHERE username = %s and password = %s', [username, password])
         if rows != []:
-            row = rows[0]
-            valid_user = User(row["id"], row["username"], row["name"], row["email"], row["password"])
-            return f"Welcome {valid_user.name}"
+            return True
         else:
-            return f"Username or password is not valid"
+            return False
 
     def generate_errors(self, user_object):
         errors = []
-        
+
         if user_object.name == "" or user_object.name == None:
             errors.append("Name cannot be empty.")
             
@@ -51,6 +60,8 @@ class User_repository:
         
         if "@" not in user_object.email:
             errors.append("I doesn't look like correct email.")
-        
+            
+        if self.validate_new_user(user_object) == False:
+            errors.append("This email or username is alredy registered.")
         return errors
 
