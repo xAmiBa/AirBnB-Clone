@@ -42,10 +42,10 @@ def post_signup():
     new_user = User(None, username, name, email, password)
     errors = user_repository.generate_errors(new_user)
     # if there are no errors, user is added
-    if errors == []:
+    if user_repository.validate_new_user(new_user) == True and errors == []:
         user_repository.add_user(new_user)
         message = "Thank you, you are signed up! Now login."
-        return render_template('signup.html', errors=errors, message=message)
+        return render_template('signup.html', message=message)
     # if there are errors, we print them
     else:
         return render_template('signup.html', errors=errors)

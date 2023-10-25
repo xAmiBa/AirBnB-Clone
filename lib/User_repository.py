@@ -11,6 +11,7 @@ class User_repository:
             users.append(item)
         return users
     
+    # nothing to return, before adding user, use validate_new_user method
     def add_user(self, user):
         name_rows = self._connection.execute(
             'SELECT * from users WHERE username = %s', [user.name])
@@ -24,22 +25,27 @@ class User_repository:
     # returns False if username or email already exists
     # returns True if username and email are unique
     def validate_new_user(self, user):
-        name_rows = self._connection.execute('SELECT * from users WHERE username = %s;', [user.username])
-        email_rows =  self._connection.execute('SELECT * from users WHERE email = %s;', [user.email])
-        if name_rows == [] or email_rows == []:
-            return True
-        else:
+        try:
+            name_rows = self._connection.execute('SELECT * from users WHERE username = %s;', [user.username])
+            email_rows =  self._connection.execute('SELECT * from users WHERE email = %s;', [user.email])
+            if name_rows == [] and email_rows == []:
+                return True
+            else:
+                return False
+        # if any of input is empty then name_rows and email_rows SQL query cannot be exacuted
+        # we're catching an error now and return false anyway
+        except:
             return False
     
-    # returns True if username matches password in databas
-    # False if not
     def login_valid(self, username, password):
         rows = self._connection.execute(
             'SELECT * from users WHERE username = %s and password = %s', [username, password])
         if rows != []:
-            return True
+            row = rows[0]
+            valid_user = User(row["id"], row["username"], row["name"], row["email"], row["password"])
+            return f"Welcome {valid_user.name}"
         else:
-            return False
+            return f"Username or password is not valid"
 
     def generate_errors(self, user_object):
         errors = []
