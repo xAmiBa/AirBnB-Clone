@@ -75,8 +75,32 @@ INSERT INTO users (username, name, email, password) VALUES ('Amina_1', 'Amina', 
 INSERT INTO users (username, name, email, password) VALUES ('Jake_1', 'Jake', 'Jake@mail.com','Jake123!');
 INSERT INTO users (username, name, email, password) VALUES ('Sudhansh_1', 'Sudhansh', 'Sudhansh@mail.com','Sudhansh123!');
 
+-- ### request tables over
+-- REQUEST TAABLES #############
+
+DROP TABLE IF EXISTS requests;
+DROP SEQUENCE IF EXISTS requests_id_seq;
+
+-- Then, we recreate them
+CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
+CREATE TABLE requests (
+    id SERIAL PRIMARY KEY,
+    request_user_id int,
+    space_id int,
+    requested_date text,
+    status boolean
+);
+
+-- request 1 
+INSERT INTO requests (request_user_id, space_id, requested_date, status) 
+VALUES (1,2, '12/12/23',FALSE);
+
+-- request 2 
+INSERT INTO requests (request_user_id, space_id, requested_date, status) 
+VALUES (2,3,'03/08/23',FALSE);
 
 
+-- ### request tables over
 
 
 

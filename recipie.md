@@ -65,16 +65,20 @@ Properties:
 - add_space()
 
 ## Request
-- self.id
+=======
+
 - self.space_id
 - self.request_user_id
 - self.status
+- approve_request()
+
+| id | user_id | space_id | requested_date | status |
+|-----------------|-----------------|-----------------|-----------------|-----------------|
+
 
 ## Request_repository
-| id | space_id | request_user_id | status|
-|-----------------|-----------------|-----------------|-----------------|
 - add_request()
-- approve_request()
+
 
 # Global naming rules
 DEV_DATABASE_NAME = "makersbnb"
