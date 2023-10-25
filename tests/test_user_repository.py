@@ -95,3 +95,17 @@ def test_login_invalid_user(db_connection):
     user_to_log = repository.login_valid(username_to_log, password_to_log)
 
     assert user_to_log == 'Username or password is not valid'
+
+
+"""
+Generating errors when user object arguments
+are empty strings or None
+"""
+def test_error_user_argument_empty(db_connection):
+    db_connection.seed("seeds/db_makers_bnb.sql")
+    repository = User_repository(db_connection)
+    user = User(None, "Gin_71", None, 'Sudhansh@mail.com', "")
+    assert repository.generate_errors(user) == [
+        "Name cannot be empty.",
+        "Password cannot be empty."
+    ]

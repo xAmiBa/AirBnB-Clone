@@ -33,3 +33,24 @@ class User_repository:
             return f"Welcome {valid_user.name}"
         else:
             return f"Username or password is not valid"
+
+    def generate_errors(self, user_object):
+        errors = []
+        
+        if user_object.name == "" or user_object.name == None:
+            errors.append("Name cannot be empty.")
+            
+        if user_object.username == "" or user_object.username == None:
+            errors.append("Username cannot be empty.")
+        
+        if user_object.email == "" or user_object.email == None:
+            errors.append("Email cannot be empty.")
+
+        if user_object.password == "" or user_object.password == None:
+            errors.append("Password cannot be empty.")
+        
+        if "@" not in user_object.email:
+            errors.append("I doesn't look like correct email.")
+        
+        return errors
+

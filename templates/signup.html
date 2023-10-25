@@ -7,27 +7,40 @@
     <body>
         <h1>Signup to MakersBnB</h1>
         <form action="/signup" method="POST">
-            <!-- showing errors if there are any in signup submission -->
+            <!-- showing errors if there are any in the list -->
             {% if errors %}
             <p class="t-errors">
-            There were errors with your submission: {{ errors }}
+            <b>There were errors with your submission:</b><br>
+            <!-- iterate through errors to display one error per line -->
+            {% for error in errors %}
+            {{ error }}<br>
+            {% endfor %}
             </p>
             {% endif %}
-
         <p>
-            <label for="title">Name</label>
+            <label for="title">Name</label><br>
             <input type="text" name="name" id="name">
         </p>
 
         <p>
-            <label for="title">Name</label>
-            <input type="text" name="name" id="name">
+            <label for="title">Username</label><br>
+            <input type="text" name="username" id="username">
+        </p>
+
+        <p>
+            <label for="email">Email</label><br>
+            <input type="text" name="email" id="email">
+        </p>
+        
+        <p>
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="password">
         </p>
       
       <p>
         <!-- `type` is submit here, to indicate it is a button -->
         <!-- `value` is used as the button's text -->
-        <input type="submit" value="Create Book">
+        <input type="submit" value="signup">
       </p>
         </form>
     </body>

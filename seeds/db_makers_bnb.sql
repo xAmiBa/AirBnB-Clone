@@ -57,14 +57,6 @@ VALUES (
     '05/01/23',
     '{"22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true, "27/11/22":true, "28/11/22":true, "29/11/22":true, "30/11/22":true, "01/12/22":true, "02/12/22":true, "03/12/22":true, "04/12/22":true, "05/12/22":true, "06/12/22":true, "07/12/22":true, "08/12/22":true, "09/12/22":true, "10/12/22":true, "11/12/22":true, "12/12/22":true}'
 );
--- Write file into database in terminal
--- psql -h 127.0.0.1 MAKERS_BNB < seeds/db_makers_bnb.sql
--- psql -h 127.0.0.1 MAKERS_BNB_TEST < seeds/db_makers_bnb.sql
-
-
--- Write file into database in terminal
--- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
--- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
 
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS users_id_seq;
@@ -82,15 +74,6 @@ CREATE TABLE users (
 INSERT INTO users (username, name, email, password) VALUES ('Amina_1', 'Amina', 'Amina@mail.com','Amina123!');
 INSERT INTO users (username, name, email, password) VALUES ('Jake_1', 'Jake', 'Jake@mail.com','Jake123!');
 INSERT INTO users (username, name, email, password) VALUES ('Sudhansh_1', 'Sudhansh', 'Sudhansh@mail.com','Sudhansh123!');
-
--- Write file into database in terminal
--- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
--- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
-=======
--- -- Write file into database in terminal
--- -- psql -h 127.0.0.1 MAKERS_BNB < db_makers_bnb.sql
--- -- psql -h 127.0.0.1 MAKERS_BNB_TEST < db_makers_bnb.sql
-
 
 
 
