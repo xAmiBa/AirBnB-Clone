@@ -12,7 +12,9 @@ from lib.Space import Space
 
 # Create a new Flask app
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY_SESSION")
+# BUG
+# Temporary disclosed secret key as env variable doesnt work
+app.secret_key = "hdcvfhjw6r86ojkdbkw"
 
 # [GET] /
 # Returns the homepage
@@ -135,7 +137,7 @@ def get_single_space(id):
         request_repository = Request_repository(connection)
         requested_date = request.form["booking_date"]
         # WARNING: TODO request_user_id must be changed to sessions["user_id"] when it works
-        request_user_id = 1
+        request_user_id = session.get('user_id')
         space_id = id
 
         # new_request false by default
@@ -213,3 +215,4 @@ def get_request_details(id):
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
+    # app.secret_key = os.environ.get("SECRET_KEY_SESSION")
