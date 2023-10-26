@@ -30,6 +30,10 @@ def get_homepage():
 def login():
     connection = get_flask_database_connection(app)
 
+    if 'logged_in' in session and session['logged_in']:
+        # User is already logged in, redirect them to a different page
+        return redirect('/spaces')  
+        
     if request.method == 'GET':
         return render_template('login.html')
     
@@ -196,7 +200,11 @@ def get_request_details(id):
 
     return render_template('request_details.html', user=user, request_user=request_user,request=request, requests=requests, space=space)
 
-
+@app.route('/logout')
+def logout():
+    # Clear the session data to log the user out
+    session.clear()
+    return redirect('/spaces')
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
