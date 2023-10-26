@@ -157,26 +157,20 @@ def get_single_space(id):
 
         return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
 
-# [GET][POST] /space/<id>/requests - template: request.html
-# Returns page specific space by its' id with associated requests
-# This is a page where user (ideally only owner of the space)
-# Posts accepted request or rejected request (updating availability)
-# @app.route('/spaces/<id>/requests', methods=['GET', 'POST])
-@app.route('/spaces/<id>/requests', methods=['GET'])
-def get_space_requests(id):
-    connection = get_flask_database_connection(app)
-    connection.connect()
-    space_repo = Space_repository(connection)
-    spaces = space_repo.all_spaces()
+@app.route('/requests', methods=['GET'])
+def get_user_requests():
+    if 'user_id' in session:
+            user_id = session.get('user_id')
+            print (f"heres method user id - {user_id}")
+            connection = get_flask_database_connection(app)
+            request_repository = Request_repository(connection)
+            requests = request_repository.get_requests_for_user(user_id)
 
-    request_repo = Request_repository(connection)
-    request_list = request_repo.get_all_requests()
-
-    space = space_repo[id-1]
-    space_name = space.name
-
-    return render_template('request.html', name=space_name, requests=request_list)
-
+            return render_template('request.html', name="Your Requests", requests=requests)
+    else:
+            # Handle the case where the user is not logged in.
+            # You can redirect to a login page or display a message.
+            return "Please log in to view your requests."
 
 #Redirects to relevant request page
 @app.route('/load_request', methods=['POST'])
@@ -190,24 +184,17 @@ def get_request_details(id):
     connection.connect()
 
     user_repo = User_repository(connection)
-    users = user_repo.all()
-
-
-    space_repo = Space_repository(connection)
-    spaces = space_repo.all_spaces()
+    user = user_repo.get_user_by_username(session.get("username"))
 
     request_repo = Request_repository(connection)
-    request_list = request_repo.get_all_requests()
+    request = request_repo.get_request_by_id(id)
+    requests = request_repo.get_all_requests()
+    request_user = user_repo.get_user_by_id(request.request_user_id)
 
-    _request = request_repo[id-1]
+    space_repo = Space_repository(connection)
+    space = space_repo.search_by_id(request.space_id)
 
-    space = spaces[_request.space_id-1]
-    space_name = space.name
-
-    _user = users[_request.request_user_id-1]
-
-    return render_template('request_details.html', name=space_name, date=_request.requested_date, user=_user.name)
-
+    return render_template('request_details.html', user=user, request_user=request_user,request=request, requests=requests, space=space)
 
 
 

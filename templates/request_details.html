@@ -19,11 +19,12 @@
         </style>
     </head>
     <body>
-        <h1>{{ name }}</h1>
+        <h1>{{ space.name }}</h1>
+        <p>{{space.description}}</p>
         <form>
         <div>
-            <p>Date Requested: {{ date }}</p>
-            <p>Name: {{ user }}</p>
+            <p>Date Requested: {{ request.requested_date }}</p>
+            <p>From: {{request_user.username }} ({{request_user.name}})</p>
             <p>
             <input type="submit" value="Approve">
             </p>

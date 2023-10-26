@@ -36,9 +36,10 @@
     </style>
 </head>
 <body>
+
     <h1>Requests</h1>
     <form action="/load_request" method="POST">
-    <p>Showing results for: {{ name }}</p>
+    <p>Showing results for: {{ session.get("username") }}</p>
     <div class="container">
         <div class="column">
             {% for request in requests %}
