@@ -8,9 +8,11 @@
         <h1>List a space</h1>
         <form action ="/spaces/new" method="post">
         {%if errors%} 
-            <p>
-                There were errors with your submision: {{errors}}
+            
+            <p class = "t-errors">
+            There were errors with your submision: {{errors}}
             </p>
+            
         {%endif%}
         
         <p>

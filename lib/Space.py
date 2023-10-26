@@ -25,14 +25,14 @@ class Space():
         return f"Name: {self.name}\nDescription: {self.description}\nPrice: {self.price}\nAvailable: {self.availability_from} - {self.availability_till}\nDates: {self.calendar}"
 
     def is_valid(self):
-        if (self.name == "") or (self.description == "")or (self.availability_from == "") or (self.availability_till == "") or\
+        if (self.name == "") or (self.description == "") or (self.price == "") or (self.availability_from == "") or (self.availability_till == "") or\
         (self.name == None) or (self.description == None) or (self.price == None) or (self.availability_from == None) or (self.availability_till == None):
             return False
         return True
     
     def generate_errors(self):
         errors = []
-        if (self.name == "") or (self.description == "") or (self.availability_from == "") or (self.availability_till == "") or\
+        if (self.name == "") or (self.description == "") or (self.price == "") or (self.availability_from == "") or (self.availability_till == "") or\
         (self.name == None) or (self.description == None) or (self.price == None) or (self.availability_from == None) or (self.availability_till == None):
             errors.append("all spaces should be completed")
         if len(errors) == 0:

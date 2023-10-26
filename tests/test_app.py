@@ -79,6 +79,27 @@ def test_list_new_space(db_connection, page, test_web_address):
                         The most amazing place to sleep')
 
 """
+# list a new invalid space
+# [POST] /spaces/new -- template = new_place.html
+# Posts a new space listing
+# @app.route('/spaces/new', methods=['POST'])
+"""
+def test_list_new_space(db_connection, page, test_web_address):
+    db_connection.seed("seeds/db_makers_bnb.sql")
+    page.goto(f"http://{test_web_address}/spaces/new")
+
+    page.fill("input[name='name']", "The place")
+    page.fill("input[name='description']", 'The most amazing place to sleep')
+#    page.fill("input[name='price']", "50.0")
+    page.fill("input[name='available_from']", '01/01/2024')
+    page.fill("input[name='available_till']", '01/02/2024')
+
+    page.click("text = List my Space")
+
+    error_element = page.locator(".t-errors")
+    expect(error_element).to_have_text("\n                   There were errors with your submision: all spaces should be completed\n                   ")
+    
+"""
 #list a new space
 # [POST] /spaces/new -- template = new_place.html
 # Posts a new space listing
