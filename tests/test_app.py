@@ -61,35 +61,36 @@ def test_good_login(page, test_web_address):
 
 """
 # list a new space
-# # [POST] /spaces/new -- template = new_place.html
-# # Posts a new space listing
-# # @app.route('/spaces/new', methods=['POST'])
-# """
-# def test_list_new_space(db_connection, page, test_web_address):
-#     db_connection.seed("seeds/db_makers_bnb.sql")
-#     page.goto(f"http://{test_web_address}/spaces/new")
+# [POST] /spaces/new -- template = new_place.html
+# Posts a new space listing
+# @app.route('/spaces/new', methods=['POST'])
+"""
+def test_list_new_space(db_connection, page, test_web_address):
+    db_connection.seed("seeds/db_makers_bnb.sql")
+    page.goto(f"http://{test_web_address}/spaces/new")
 
-#     page.fill("input[name='name']", "The place")
-#     page.fill("input[name='description']", 'The most amazing place to sleep')
-#     page.fill("input[name='price']", "50.0")
-#     page.fill("input[name='available_from']", '01/01/2024')
-#     page.fill("input[name='available_to']", '01/02/2024')
+    page.fill("input[name='name']", "The place")
+    page.fill("input[name='description']", 'The most amazing place to sleep')
+    page.fill("input[name='price']", "50.0")
+    page.fill("input[name='available_from']", '01/01/2024')
+    page.fill("input[name='available_till']", '01/02/2024')
 
-#     page.click("text = List my Space")
+    page.click("text = List my Space")
 
-#     assert 
+    name_element = page.locator(".t-space").last
+    expect(name_element).to_have_text('\nThe place\n \
+                        The most amazing place to sleep')
 
-    # name_element = page.locator("name")
-    # expect(name_element).to_have_text("The place")
+"""
+#list a new space
+# [POST] /spaces/new -- template = new_place.html
+# Posts a new space listing
+# @app.route('/spaces/new', methods=['POST'])
+"""
+def test_spaces(db_connection, page, test_web_address):
+    db_connection.seed("seeds/db_makers_bnb.sql")
+    page.goto(f"http://{test_web_address}/spaces") 
 
-    # name_element = page.locator("description")
-    # expect(name_element).to_have_text('The most amazing place to sleep')
+    list_spaces = page.locator(".t-space")
+    expect(list_spaces).to_have_text(['\n                Cozy Cottage Retreat\n                Escape to this charming cottage for a tranquil retreat. Nestled in the heart of nature, this cozy cottage offers a serene getaway, perfect for nature lovers and those seeking relaxation.\n                ', '\n                Modern Urban Loft\n                Experience city living at its finest in this stylish urban loft. With modern amenities and a prime downtown location, this loft is ideal for urban explorers and business travelers.\n                ', '\n                Beachfront Paradise\n                Wake up to the sound of waves in this beachfront paradise. Enjoy direct beach access, stunning ocean views, and a serene atmosphere, making it a dream vacation spot for beach enthusiasts.\n                '])
 
-    # name_element = page.locator(".t-price")
-    # expect(name_element).to_have_text(50.0)
-
-    # name_element = page.locator(".t-available_from")
-    # expect(name_element).to_have_text("01/01/2024")
-
-    # name_element = page.locator(".t-available_to")
-    # expect(name_element).to_have_text("01/02/2024")    
