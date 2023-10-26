@@ -30,24 +30,18 @@
         </p>
         
         <p>
-        <label for = "name">Price per nigth (£)</label>
-        </p>
-        <p>
-        <input type="text" name = "price"  id = "price">
+        <label for = "name">Price per nigth (£)</label><br>
+        <input type="number" name = "price"  id = "price" required>
         </p>
         
         <p>
-        <label for = "name">Available from (DD/MM/YY)</label>
-        </p>
-        <p>
-        <input type="text" name = "available_from"  id = "available_from ">
+        <label for = "name">Available from</label><br>
+        <input type="date" name = "available_from"  id = "available_from " required min="{{ min_date }}" max="{{ max_date }}">
         </p>
 
         <p>
-        <label for = "name">Available to (DD/MM/YY)</label>
-        </p>
-        <p>
-        <input type="text" name = "available_till"  id = "available_till">
+        <label for = "name">Available to</label><br>
+        <input type="date" name = "available_till"  id = "available_till" required>
         </p>
 
         <p>
