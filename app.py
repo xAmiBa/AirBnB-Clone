@@ -109,7 +109,8 @@ def new_space():
         space_repository = Space_repository(connection)
         lst = space_repository.all_spaces()
         return render_template('new_space.html', spaces =lst)
-    elif request.method == 'POST':
+    
+    if request.method == 'POST':
         name = request.form['name']
         description = request.form['description']
         price = request.form['price']
@@ -118,9 +119,13 @@ def new_space():
         new_space = Space(None,name, description, price, available_from, available_till, True)
         if not new_space.is_valid():
             return render_template('/new_space.html', space = new_space, errors = new_space.generate_errors()), 400
+        
         else:
             place_price = float(price)
-            the_place = Space(None,name, description, place_price, available_from, available_till, True)
+            # get calendar dictionary
+            space_repository = Space_repository(connection)
+            calendar = space_repository.get_calendar_from_dates(available_from, available_till)
+            the_place = Space(None,name, description, place_price, available_from, available_till, calendar)
             repository.add_space(the_place)
             return redirect(f"/spaces")
 

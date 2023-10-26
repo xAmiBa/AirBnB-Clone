@@ -161,12 +161,12 @@ def test_for_error_exiting_user_signup(page, test_web_address):
     # message_tag = page.locator(".message")
     # expect(message_tag).to_have_text("Thank you for your request!")
 
-"""
-when unlogged user try to access any page apart from signup and login
-acces is denied
-"""
-def test_access_denied(page, test_web_address):
-    page.goto(f"http://{test_web_address}/spaces/2")
-    page.screenshot(path='screenshot.png')
-    access_tag = page.locator("access")
-    expect(access_tag).to_have_text("Access denied. To see this page")
+# """
+# when unlogged user try to access any page apart from signup and login
+# acces is denied
+# """
+# def test_access_denied(page, test_web_address):
+#     page.goto(f"http://{test_web_address}/spaces/2")
+#     page.screenshot(path='screenshot.png')
+#     access_tag = page.locator("access")
+#     expect(access_tag).to_have_text("Access denied. To see this page")

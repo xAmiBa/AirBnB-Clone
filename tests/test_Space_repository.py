@@ -165,29 +165,38 @@ def test_add_invalid_place(db_connection):
         ]
 
 
-# NOT IMPLEMENTED YET    
 """
 get rendered html dates options by space id
 when date is booked displays: not available
 # """
-# def test_get_html_template_options_of_calendar(db_connection):
-#     repository = Space_repository(db_connection)
-#     db_connection.seed('seeds/db_makers_bnb.sql')
+def test_get_html_template_options_of_calendar(db_connection):
+    repository = Space_repository(db_connection)
+    db_connection.seed('seeds/db_makers_bnb.sql')
 
-#     test_space = Space(
-#         None,
-#         "test name",
-#         "test description",
-#         666,
-#         "test availability_from",
-#         "test avaiability_till",
-#         '{"15/11/22":true, "16/11/22":true, "17/11/22":false, "18/11/22":true}'
-#         )
-#     repository.add_space(test_space)
+    test_space = Space(
+        None,
+        "test name",
+        "test description",
+        666,
+        "test availability_from",
+        "test avaiability_till",
+        '{"15/11/22":true, "16/11/22":true, "17/11/22":false, "18/11/22":true}'
+        )
+    repository.add_space(test_space)
 
-#     assert repository.get_dates_by_id(4) == [
-#         '<option value="15/11/22">15/11/22</option>',
-#         '<option value="16/11/22">16/11/22</option>',
-#         '<option value="17/11/22">not available</option>',
-#         '<option value="18/11/22">18/11/22</option>'   
-#     ]
+    assert repository.get_dates_by_id(4) == [
+        '<option value="15/11/22">15/11/22</option>',
+        '<option value="16/11/22">16/11/22</option>',
+        '<option value="17/11/22">not available</option>',
+        '<option value="18/11/22">18/11/22</option>'   
+    ]
+
+"""
+When I start and end date is inputed
+a dictionary calendar is created
+"""
+def test_dictionary_calendar_created(db_connection):
+    repository = Space_repository(db_connection)
+    assert repository.get_calendar_from_dates("01/12/23", "04/12/23") == '{"01/12/23":True, "02/12/23":True, "03/12/23":True, "04/12/23":True}'
+    
+
