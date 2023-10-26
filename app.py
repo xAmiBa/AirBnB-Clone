@@ -9,6 +9,8 @@ from lib.request_repository import Request_repository
 from lib.request import Request
 from lib.Space_repository import Space_repository
 from lib.Space import Space
+# import custom decorator which authentocates the user
+from lib.login_required import login_required
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -89,6 +91,7 @@ def post_signup():
 # Returns page with all spaces listed
 # @app.route('/spaces', methods=['GET'])
 @app.route('/spaces', methods = ['GET'])
+@login_required
 def spaces_list():
     connection = get_flask_database_connection(app)
     space_repository = Space_repository(connection)
@@ -102,6 +105,7 @@ def spaces_list():
 # @app.route('/spaces/new', methods=['POST'])
 
 @app.route('/spaces/new', methods = ['GET', 'POST'])
+@login_required
 def new_space():
     connection = get_flask_database_connection(app)
     repository = Space_repository(connection)
@@ -129,6 +133,7 @@ def new_space():
 # This is a page where user post a request
 # Posts a new request for booking a space
 @app.route('/spaces/<id>', methods=['GET', 'POST'])
+@login_required
 def get_single_space(id):
     if request.method == 'GET':
         connection = get_flask_database_connection(app)
@@ -162,27 +167,25 @@ def get_single_space(id):
         return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
 
 @app.route('/requests', methods=['GET'])
+@login_required
 def get_user_requests():
-    if 'user_id' in session:
-            user_id = session.get('user_id')
-            print (f"heres method user id - {user_id}")
-            connection = get_flask_database_connection(app)
-            request_repository = Request_repository(connection)
-            requests = request_repository.get_requests_for_user(user_id)
+    user_id = session.get('user_id')
+    print (f"heres method user id - {user_id}")
+    connection = get_flask_database_connection(app)
+    request_repository = Request_repository(connection)
+    requests = request_repository.get_requests_for_user(user_id)
 
-            return render_template('request.html', name="Your Requests", requests=requests)
-    else:
-            # Handle the case where the user is not logged in.
-            # You can redirect to a login page or display a message.
-            return "Please log in to view your requests."
+    return render_template('request.html', name="Your Requests", requests=requests)
 
 #Redirects to relevant request page
 @app.route('/load_request', methods=['POST'])
+@login_required
 def load_request():
     id = request.form['request_id']
     return redirect(f"/requests/{id}")
 
 @app.route('/requests/<id>', methods=['GET'])
+@login_required
 def get_request_details(id):
     connection = get_flask_database_connection(app)
     connection.connect()
@@ -205,6 +208,7 @@ def logout():
     # Clear the session data to log the user out
     session.clear()
     return redirect('/login')
+  
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))

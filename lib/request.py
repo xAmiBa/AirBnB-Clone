@@ -27,7 +27,6 @@ class Request:
             )
         return False
 
-
     #for string representation
     def __repr__(self):
         return f"Request({self.id}, requestor's id:{self.request_user_id}, space id:{self.space_id}, requested date:{self.requested_date},current stats:{self.status})"
