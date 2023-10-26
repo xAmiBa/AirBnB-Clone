@@ -5,6 +5,10 @@ from lib.Space_repository import Space_repository
 from lib.Space import Space
 from lib.User_repository import User_repository
 from lib.User import User
+from lib.Space_repository import Space_repository
+from lib.Space import Space
+from lib.request import Request
+from lib.request_repository import Request_repository
 
 
 # Create a new Flask app
@@ -115,11 +119,66 @@ def new_space():
 # @app.route('/spaces/<id>', methods=['GET'])
 # @app.route('/spaces/<id>', methods=['POST'])
 
+'''NOT IN USE'''
 # [GET][POST] /requests - template: request.html
 # Returns page with all requests sent to the owner
 # Posts accepted request or rejected request (availability of space changes)
 # @app.route('/requests', methods=['GET'])
 # @app.route('/requests', methods=['POST'])
+
+# [GET][POST] /space/<id>/requests - template: request.html
+# Returns page specific space by its' id with associated requests
+# This is a page where user (ideally only owner of the space)
+# Posts accepted request or rejected request (updating availability)
+# @app.route('/spaces/<id>/requests', methods=['GET', 'POST])
+@app.route('/spaces/<id>/requests', methods=['GET'])
+def get_space_requests(id):
+    connection = get_flask_database_connection(app)
+    connection.connect()
+    space_repo = Space_repository(connection)
+    spaces = space_repo.all_spaces()
+
+    request_repo = Request_repository(connection)
+    request_list = request_repo.get_all_requests()
+
+    space = space_repo[id-1]
+    space_name = space.name
+
+    return render_template('request.html', name=space_name, requests=request_list)
+
+
+#Redirects to relevant request page
+@app.route('/load_request', methods=['POST'])
+def load_request():
+    id = request.form['request_id']
+    return redirect(f"/requests/{id}")
+
+@app.route('/requests/<id>', methods=['GET'])
+def get_request_details(id):
+    connection = get_flask_database_connection(app)
+    connection.connect()
+
+    user_repo = User_repository(connection)
+    users = user_repo.all()
+
+
+    space_repo = Space_repository(connection)
+    spaces = space_repo.all_spaces()
+
+    request_repo = Request_repository(connection)
+    request_list = request_repo.get_all_requests()
+
+    _request = request_repo[id-1]
+
+    space = spaces[_request.space_id-1]
+    space_name = space.name
+
+    _user = users[_request.request_user_id-1]
+
+    return render_template('request_details.html', name=space_name, date=_request.requested_date, user=_user.name)
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
