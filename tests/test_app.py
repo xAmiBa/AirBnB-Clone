@@ -74,6 +74,7 @@ def test_list_new_space(db_connection, page, test_web_address):
     page.click("text = List my Space")
 
     name_element = page.locator(".t-space").last
+    print(page.content())
     expect(name_element).to_have_text('\nThe place\n \
                         The most amazing place to sleep')
 
