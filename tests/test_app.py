@@ -27,10 +27,36 @@ def test_for_error_exiting_user_signup(page, test_web_address):
     page.fill("input[name=password]", "Test password")
     page.click("text=Signup to MarkersBnB")
     errors_tag = page.locator(".t-errors")
-    page.screenshot(path="screenshot.png", full_page=True)
+    # page.screenshot(path="screenshot.png", full_page=True)
     expect(errors_tag).to_have_text(
         ["There were errors with your submission:\n\n\nThis email or username is alredy registered.\n\n"]
         )
+    
+    
+def test_for_incorrect_login(page, test_web_address):
+    # go to page
+    page.goto(f"http://{test_web_address}/login")
+    # input details
+    page.fill("input[name=email]", "tony@test.com")
+    page.fill("input[name=password]", "tony")
+    page.click("text=Login")
+    errors_tag = page.locator(".t-errors")
+    page.screenshot(path="screenshot.png", full_page=True)
+    # Check the content of the error message
+    expect(errors_tag).to_have_text("There were errors with your submission:\n\n Incorrect details.")
+    
+def test_good_login(page, test_web_address):
+    # go to page
+    page.goto(f"http://{test_web_address}/login")
+    # input details
+    page.fill("input[name=email]", "Amina@mail.com")
+    page.fill("input[name=password]", "Amina123!")
+    page.click("text=Login")
+    errors_tag = page.locator(".t-errors")
+    page.screenshot(path="screenshot.png", full_page=True)
+    # Check the tracvelled to spaces
+    # expect('spaces.html')             - HAS TO BE DONE
+    
     
 
 """
