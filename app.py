@@ -109,14 +109,17 @@ def new_space():
     elif request.method == 'POST':
         name = request.form['name']
         description = request.form['description']
-        price = float(request.form['price'])
+        price = request.form['price']
         available_from = request.form['available_from']
         available_till = request.form['available_till']
-        new_space = Space(None,name, description, price, available_from, available_till, "")
+        new_space = Space(None,name, description, price, available_from, available_till, True)
         if not new_space.is_valid():
             return render_template('/new_space.html', space = new_space, errors = new_space.generate_errors()), 400
-        repository.add_space(new_space)
-        return redirect(f"/spaces")
+        else:
+            place_price = float(price)
+            the_place = Space(None,name, description, place_price, available_from, available_till, True)
+            repository.add_space(the_place)
+            return redirect(f"/spaces")
 
 # [GET] /spaces/<id> -- template = spaces
 # Returns page specific space by its' id with calendar to choose a booking date
