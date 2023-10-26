@@ -101,25 +101,25 @@ def get_single_space(id):
     return render_template('single_space.html', space=space, calendar=calendar)
 
 # WORK IN PROGRESS 
-@app.route('/spaces/<id>', methods=['POST'])
-def post_request_for_single_space(id):
-    connection = get_flask_database_connection(app)
-    request_repository = Request_repository(connection)
+# @app.route('/spaces/<id>', methods=['POST'])
+# def post_request_for_single_space(id):
+#     connection = get_flask_database_connection(app)
+#     request_repository = Request_repository(connection)
 
-    requested_date = request.form("calendar") #TODO is calendar ref id to chosen date?
-    # request_user_id TODO: need Jake's session
+#     requested_date = request.form("calendar") #TODO is calendar ref id to chosen date?
+#     # request_user_id TODO: need Jake's session
 
-    # TODO: get all data to post new request: request_user_id, space_id, requested_date, status
-    # new_request = Request(None, request_user_id, id, requested_date, False)
-    # request_repository.add_request(new_request)
-    message = "Thank you for your request!"
+#     # TODO: get all data to post new request: request_user_id, space_id, requested_date, status
+#     # new_request = Request(None, request_user_id, id, requested_date, False)
+#     # request_repository.add_request(new_request)
+#     message = "Thank you for your request!"
 
-    space_repository = Space_repository(connection)
-    space = space_repository.search_by_id(id)
-    calendar = space_repository.get_dates_by_id(id)
-    url = f"/spaces/{id}"
+#     space_repository = Space_repository(connection)
+#     space = space_repository.search_by_id(id)
+#     calendar = space_repository.get_dates_by_id(id)
+#     url = f"/spaces/{id}"
 
-    return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
+#     return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
 
 
 # [GET][POST] /requests - template: request.html
