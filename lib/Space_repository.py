@@ -20,9 +20,10 @@ class Space_repository():
         return spaces
 
     def add_space(self, space_object):
-        self._connection.execute("INSERT INTO spaces (name, description, price, availability_from, availability_till, calendar) "\
-                                "VALUES (%s, %s, %s, %s, %s, %s)",
-                                [space_object.name, space_object.description, space_object.price, space_object.availability_from, space_object.availability_till, space_object.calendar])
+        if space_object.is_valid() == True:
+            self._connection.execute("INSERT INTO spaces (name, description, price, availability_from, availability_till, calendar) "\
+                                    "VALUES (%s, %s, %s, %s, %s, %s)",
+                                    [space_object.name, space_object.description, space_object.price, space_object.availability_from, space_object.availability_till, space_object.calendar])
         
     def search_by_id(self, space_id):
         rows = self._connection.execute("SELECT * FROM spaces WHERE id=%s", [space_id])
