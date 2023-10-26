@@ -35,12 +35,13 @@ def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    new_repo = User_repository()
+    user_repository = User_repository()
 
-    if new_repo.login_valid(username, password) == True:
+    if user_repository.login_valid(username, password) == True:
+        user_object = user_repository.get_user_by_username(username)
         # starts a new session
         session['username'] = username
-        # session['user_id'] = 
+        session['user_id'] = user_object.id
         return redirect('spaces')
     else:
         flash('Invalid username or password. Please try again.')  # Store an error message
@@ -125,11 +126,13 @@ def get_single_space(id):
         connection = get_flask_database_connection(app)
         request_repository = Request_repository(connection)
         requested_date = request.form["booking_date"]
-        # user_id =  
+        # WARNING: TODO request_user_id must be changed to sessions["user_id"] when it works
+        request_user_id = 1
+        space_id = id
 
-        # TODO: get all data to post new request: request_user_id, space_id, requested_date, status
-        # new_request = Request(None, request_user_id, id, requested_date, False)
-        # request_repository.add_request(new_request)
+        # new_request false by default
+        new_request = Request(None, request_user_id, space_id, requested_date, False)
+        request_repository.add_request(new_request)
         message = "Thank you for your request!"
 
         space_repository = Space_repository(connection)
@@ -138,28 +141,6 @@ def get_single_space(id):
         url = f"/spaces/{id}"
 
         return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
-
-# WORK IN PROGRESS 
-# @app.route('/spaces/<id>', methods=['POST'])
-# def post_request_for_single_space(id):
-    # connection = get_flask_database_connection(app)
-    # request_repository = Request_repository(connection)
-
-    # requested_date = request.form("calendar") #TODO is calendar ref id to chosen date?
-    # # request_user_id TODO: need Jake's session
-
-    # # TODO: get all data to post new request: request_user_id, space_id, requested_date, status
-    # # new_request = Request(None, request_user_id, id, requested_date, False)
-    # # request_repository.add_request(new_request)
-    # message = "Thank you for your request!"
-
-    # space_repository = Space_repository(connection)
-    # space = space_repository.search_by_id(id)
-    # calendar = space_repository.get_dates_by_id(id)
-    # url = f"/spaces/{id}"
-
-    # return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
-
 
 # [GET][POST] /requests - template: request.html
 # Returns page with all requests sent to the owner
