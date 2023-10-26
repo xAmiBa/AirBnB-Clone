@@ -45,7 +45,7 @@ def test_login_valid_user(db_connection):
     
     user_to_log = repository.login_valid(username_to_log, password_to_log)
 
-    assert user_to_log == 'Welcome Sudhansh'
+    assert user_to_log == True
 
 """
 Loging a invalid user with invalid password
@@ -59,7 +59,7 @@ def test_login_invalid_password(db_connection):
     
     user_to_log = repository.login_valid(username_to_log, password_to_log)
 
-    assert user_to_log == 'Username or password is not valid'
+    assert user_to_log == False
 
 """
 Loging a invalid user with invalid username
@@ -73,4 +73,4 @@ def test_login_invalid_user(db_connection):
     
     user_to_log = repository.login_valid(username_to_log, password_to_log)
 
-    assert user_to_log == 'Username or password is not valid'
+    assert user_to_log == False

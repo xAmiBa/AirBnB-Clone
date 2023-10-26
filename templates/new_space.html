@@ -1,10 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>MakersBnB</title>
+        <title>List a Space | MakersBnB</title>
         <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
-        <h1>This is the homepage.</h1>
+        <h1>List a space</h1>
+        <form action ="/spaces/new" method="post">
+        <!--    {%if errors%} 
+                    <p class=  >
+                        There were errors with your submision:{{errors}}
+                    </p>
+                {%endif%}
+        -->
+        <p>
+        <label for = "name">Name</label>
+        </p>
+        <p>
+        <input type="text" name = "name"  id = "name">
+        </p>
+
+        <p>
+        <label for = "name">Description</label>
+        </p>
+        <p>
+        <input type="text" name = "description"  id = "description">
+        </p>
+        
+        <p>
+        <label for = "name">Price per nigth (£)</label>
+        </p>
+        <p>
+        <input type="text" name = "price"  id = "price">
+        </p>
+        
+        <p>
+        <label for = "name">Available from (DD/MM/YY)</label>
+        </p>
+        <p>
+        <input type="text" name = "available_from"  id = "available_from ">
+        </p>
+
+        <p>
+        <label for = "name">Available to (DD/MM/YY)</label>
+        </p>
+        <p>
+        <input type="text" name = "available_till"  id = "available_till">
+        </p>
+
+        <p>
+        <input type = 'Submit' value = 'List my Space'>
+        </p>
+
+        </form>
     </body>
 </html>
