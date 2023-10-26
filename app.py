@@ -204,7 +204,7 @@ def get_request_details(id):
 def logout():
     # Clear the session data to log the user out
     session.clear()
-    return redirect('/spaces')
+    return redirect('/login')
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
