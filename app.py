@@ -136,7 +136,6 @@ def get_single_space(id):
         connection = get_flask_database_connection(app)
         request_repository = Request_repository(connection)
         requested_date = request.form["booking_date"]
-        # WARNING: TODO request_user_id must be changed to sessions["user_id"] when it works
         request_user_id = session.get('user_id')
         space_id = id
 
@@ -151,13 +150,6 @@ def get_single_space(id):
         url = f"/spaces/{id}"
 
         return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
-
-'''NOT IN USE'''
-# [GET][POST] /requests - template: request.html
-# Returns page with all requests sent to the owner
-# Posts accepted request or rejected request (availability of space changes)
-# @app.route('/requests', methods=['GET'])
-# @app.route('/requests', methods=['POST'])
 
 # [GET][POST] /space/<id>/requests - template: request.html
 # Returns page specific space by its' id with associated requests
