@@ -36,6 +36,7 @@ class Space_repository():
             row['availability_till'],
             row['calendar']
             )
+    
     # renders list of html options for dropdown menu to list in template
     # all unavailable dates are greyed out
     def get_dates_by_id(self, space_id):
