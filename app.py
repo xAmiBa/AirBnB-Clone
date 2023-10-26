@@ -7,14 +7,12 @@ from lib.User_repository import User_repository
 from lib.User import User
 from lib.request_repository import Request_repository
 from lib.request import Request
-
 from lib.Space_repository import Space_repository
 from lib.Space import Space
-from lib.request import Request
-from lib.request_repository import Request_repository
 
 # Create a new Flask app
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY_SESSION")
 
 # [GET] /
 # Returns the homepage
@@ -22,34 +20,35 @@ app = Flask(__name__)
 def get_homepage():
     return render_template('index.html')
 
-#### ALL ROUTES ARE COMMENTED OUT FOR FUTURE USE, JUST UNCOMMENT TO USE
 # [GET][POST] /login 
 # Returns the login page with login form
 # Posts and validates login details to databade
 # If login is validated,  creates new session
-# @app.route('/login', methods=['GET'])
-@app.route('/login', methods=['GET'])
-def open_login():
-    return render_template('login.html')
-
-# Route for processing the login form submission
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    # Retrieve login details from the form
-    username = request.form.get('username')
-    password = request.form.get('password')
+    connection = get_flask_database_connection(app)
 
-    user_repository = User_repository()
+    if request.method == 'GET':
+        return render_template('login.html')
+    
+    # Route for processing the login form submission
+    if request.method == 'POST':
+        # Retrieve login details from the form
+        username = request.form.get('username')
+        password = request.form.get('password')
 
-    if user_repository.login_valid(username, password) == True:
-        user_object = user_repository.get_user_by_username(username)
-        # starts a new session
-        session['username'] = username
-        session['user_id'] = user_object.id
-        return redirect('spaces')
-    else:
-        flash('Invalid username or password. Please try again.')  # Store an error message
-        return redirect('login') 
+        user_repository = User_repository(connection)
+
+        if user_repository.login_valid(username, password) == True:
+            user_object = user_repository.get_user_by_username(username)
+            # starts a new session
+            session['logged_in'] = True
+            session['username'] = username
+            session['user_id'] = user_object.id
+            return redirect('/spaces')
+        else:
+            errors = True
+            return render_template('login.html', errors=errors) 
 
 
 # [GET][POST] /signup

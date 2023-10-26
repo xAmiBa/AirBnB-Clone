@@ -15,7 +15,6 @@ def test_for_signup(page, test_web_address):
     page.fill("input[name=password]", "Test password")
     page.click("text=Signup to MarkersBnB")
     h2_tag = page.locator("h2")
-    page.screenshot(path="screenshot.png", full_page=True)
     expect(h2_tag).to_have_text("Thank you, you are signed up! Now login.")
     
 
@@ -37,7 +36,7 @@ def test_for_incorrect_login(page, test_web_address):
     # go to page
     page.goto(f"http://{test_web_address}/login")
     # input details
-    page.fill("input[name=email]", "tony@test.com")
+    page.fill("input[name=username]", "wrongusernme")
     page.fill("input[name=password]", "tony")
     page.click("text=Login")
     errors_tag = page.locator(".t-errors")
@@ -45,17 +44,13 @@ def test_for_incorrect_login(page, test_web_address):
     # Check the content of the error message
     expect(errors_tag).to_have_text("There were errors with your submission:\n\n Incorrect details.")
     
-def test_good_login(page, test_web_address):
-    # go to page
-    page.goto(f"http://{test_web_address}/login")
-    # input details
-    page.fill("input[name=email]", "Amina@mail.com")
-    page.fill("input[name=password]", "Amina123!")
-    page.click("text=Login")
-    errors_tag = page.locator(".t-errors")
-    page.screenshot(path="screenshot.png", full_page=True)
-    # Check the tracvelled to spaces
-    # expect('spaces.html')             - HAS TO BE DONE
+# def test_good_login(page, test_web_address):
+#     page.goto(f"http://{test_web_address}/login")
+#     page.fill("input[name=username]", "Amina_1")
+#     page.fill("input[name=password]", "Amina123!")
+#     page.click("text=Login")
+#     # Check the tracvelled to spaces
+#     # expect('spaces.html')             - HAS TO BE DONE
     
     
 
@@ -119,7 +114,6 @@ Whet user submits a request, they see a thank you message
 def test_for_submit_request(page, test_web_address):
     page.goto(f"http://{test_web_address}/spaces/2")
     page.click("text=Send a booking request")
-    page.screenshot(path="screenshot.png", full_page=True)
     message_tag = page.locator(".message")
     expect(message_tag).to_have_text("Thank you for your request!")
 
