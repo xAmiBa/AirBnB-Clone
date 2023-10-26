@@ -55,3 +55,11 @@ class Request_repository:
         row = rows[0]
         return Request(row["id"], row["request_user_id"], row["space_id"], row["requested_date"], row["status"])
         
+    def toggle_status(self, request_id):
+        request = self.get_request_by_id(request_id)
+        self._connection.execute('UPDATE requests SET status = %s, WHERE id = %s', [not request.status, request_id])
+        return None
+    
+    def delete_request(self, request_id): #Need to add foreign keys eventually to SQL schema
+        self._connection.execute('DELETE from requests WHERE id = %s', [request_id])
+        return None
