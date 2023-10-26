@@ -5,6 +5,20 @@
         <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
-        <h1>This is the homepage.</h1>
+        <h1>Book a Space</h1>
+            <p>
+            <a href = "/spaces/new"><input type = 'Submit' value = 'List a Space'></a>
+            </p>
+            <div class="t-space-container">
+            {% for space in spaces %}
+                    <a name="name" href="/spaces/{{space.id}}">
+                <div class="t-space">
+                        <p>{{space.name}}</p>
+                        <p>{{space.description}}</p>
+                </div>
+                    </a>
+                    <br>
+            {% endfor %}
+            </div>
     </body>
 </html>

@@ -114,7 +114,9 @@ def test_search_for_space_by_id(db_connection):
         '23/22/22',
         '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}'
         )
-    
+
+
+# NOT IMPLEMENTED YET    
 """
 get rendered html dates options by space id
 when date is booked displays: not available
