@@ -6,20 +6,19 @@
     </head>
     <body>
         <div class="logout-button">
-            <a href="/logout">Log Out</a>
+            <a href="/logout">Log Out</a></div>
         <h1>Book a Space</h1>
             <p>
             <a href = "/spaces/new"><input type = 'Submit' value = 'List a Space'></a>
             </p>
             <div class="t-space-container">
             {% for space in spaces %}
-                    <a name="name" href="/spaces/{{space.id}}">
+                    
                 <div class="t-space">
-                        <p>{{space.name}}</p>
+                    <h3>{{space.name}}</h3>
                         <p>{{space.description}}</p>
+                        <a name="name" href="/spaces/{{space.id}}">Book now</a>
                 </div>
-                    </a>
-                    <br>
             {% endfor %}
             </div>
     </body>
