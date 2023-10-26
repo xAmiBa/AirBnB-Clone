@@ -185,32 +185,44 @@ def load_request():
     id = request.form['request_id']
     return redirect(f"/requests/{id}")
 
-@app.route('/requests/<id>', methods=['GET'])
-def get_request_details(id):
-    connection = get_flask_database_connection(app)
-    connection.connect()
+# @app.route('/requests/<id>', methods=['GET'])
+# def get_request_details(id):
+#     connection = get_flask_database_connection(app)
+#     connection.connect()
 
-    user_repo = User_repository(connection)
-    users = user_repo.all()
-
-
-    space_repo = Space_repository(connection)
-    spaces = space_repo.all_spaces()
-
-    request_repo = Request_repository(connection)
-    request_list = request_repo.get_all_requests()
-
-    _request = request_repo[id-1]
-
-    space = spaces[_request.space_id-1]
-    space_name = space.name
-
-    _user = users[_request.request_user_id-1]
-
-    return render_template('request_details.html', name=space_name, date=_request.requested_date, user=_user.name)
+#     user_repo = User_repository(connection)
+#     users = user_repo.all()
 
 
+#     space_repo = Space_repository(connection)
+#     spaces = space_repo.all_spaces()
 
+#     request_repo = Request_repository(connection)
+#     request_list = request_repo.get_all_requests()
+
+#     _request = request_repo[id-1]
+
+#     space = spaces[_request.space_id-1]
+#     space_name = space.name
+
+#     _user = users[_request.request_user_id-1]
+
+#     return render_template('request_details.html', name=space_name, date=_request.requested_date, user=_user.name)
+
+
+@app.route('/requests', methods=['GET'])
+def get_user_requests():
+    if 'user_id' in session:
+        user_id = session['user_id']
+        connection = get_flask_database_connection(app)
+        request_repository = Request_repository(connection)
+        user_requests = request_repository.get_requests_for_user(user_id)
+
+        return render_template('request.html', name="Your Requests", requests=user_requests)
+    else:
+        # Handle the case where the user is not logged in.
+        # You can redirect to a login page or display a message.
+        return "Please log in to view your requests."
 
 if __name__ == '__main__':
     app.run(debug=True, port=int(os.environ.get('PORT', 5000)))
