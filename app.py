@@ -40,12 +40,11 @@ def login():
     if new_repo.login_valid(username, password) == True:
         # starts a new session
         session['username'] = username
+        # session['user_id'] = 
         return redirect('spaces')
-    
     else:
         flash('Invalid username or password. Please try again.')  # Store an error message
         return redirect('login') 
-
 
 
 # [GET][POST] /signup
@@ -126,7 +125,7 @@ def get_single_space(id):
         connection = get_flask_database_connection(app)
         request_repository = Request_repository(connection)
         requested_date = request.form["booking_date"]
-        # request_user_id TODO: need Jake's session
+        # user_id =  
 
         # TODO: get all data to post new request: request_user_id, space_id, requested_date, status
         # new_request = Request(None, request_user_id, id, requested_date, False)

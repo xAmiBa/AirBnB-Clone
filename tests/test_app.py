@@ -109,11 +109,13 @@ def test_for_single_space(page, test_web_address):
     expect(description_tag).to_have_text('Experience city living at its finest in this stylish urban loft. With modern amenities and a prime downtown location, this loft is ideal for urban explorers and business travelers.')
 
 # WORK IN PROGRESS 
-# """
-# Whet user submits a request, they see a thank you message
-# """
-# def test_for_submit_request(page, test_web_address):
-#     page.goto(f"http://{test_web_address}/spaces/2")
-#     page.click("text=Send a booking request")
-#     message_tag = page.locator(".message")
-#     expect(message_tag).to_have_text("Thank you for your request!")
+"""
+Whet user submits a request, they see a thank you message
+"""
+def test_for_submit_request(page, test_web_address):
+    page.goto(f"http://{test_web_address}/spaces/2")
+    page.click("text=Send a booking request")
+    page.screenshot(path="screenshot.png", full_page=True)
+    message_tag = page.locator(".message")
+    expect(message_tag).to_have_text("Thank you for your request!")
+
