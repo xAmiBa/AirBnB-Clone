@@ -73,3 +73,9 @@ class User_repository:
         rows = self._connection.execute("SELECT * FROM users WHERE username=%s;",  [username])
         row = rows[0]
         return User(row["id"], row["username"], row["name"], row["email"], row["password"])
+    
+    def get_user_by_id(self,user_id):
+        rows = self._connection.execute("SELECT * FROM users WHERE id=%s;",  [user_id])
+        row = rows[0]
+        return User(row["id"], row["username"], row["name"], row["email"], row["password"])
+    

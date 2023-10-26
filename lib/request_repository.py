@@ -46,3 +46,12 @@ class Request_repository:
             item = Request(row["id"], row["request_user_id"], row["space_id"], row["requested_date"], row["status"])
             requests.append(item)
         return requests
+    
+    def get_request_by_id(self, request_id):
+        rows = self._connection.execute(
+            'SELECT id, request_user_id, space_id, requested_date, status FROM requests WHERE id = %s',
+            [request_id]
+            )
+        row = rows[0]
+        return Request(row["id"], row["request_user_id"], row["space_id"], row["requested_date"], row["status"])
+        

@@ -37,27 +37,9 @@
 </head>
 <body>
 
-    <!-- new  -->
-    <h1>Your Requests</h1>
-    <div class="container">
-        <div class="column">
-            {% for request in requests %}
-            <div class="entry">
-                {{ request.requested_date }}
-                {% if request.status %}
-                <br> Confirmed
-                {% else %}
-                <br> Not Confirmed
-                {% endif %}
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-
-    <!-- old  -->
     <h1>Requests</h1>
     <form action="/load_request" method="POST">
-    <p>Showing results for: {{ name }}</p>
+    <p>Showing results for: {{ session.get("username") }}</p>
     <div class="container">
         <div class="column">
             {% for request in requests %}
