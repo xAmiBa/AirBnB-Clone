@@ -44,7 +44,6 @@ class Space_repository():
 
         # turn calendar dict string into dict
         calendar = json.loads(space.calendar)
-        print(calendar)
 
         calendar_html = []
         for key, value in calendar.items():
