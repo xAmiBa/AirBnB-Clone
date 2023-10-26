@@ -69,3 +69,7 @@ class User_repository:
             errors.append("This email or username is alredy registered.")
         return errors
 
+    def get_user_by_username(self, username):
+        rows = self._connection.execute("SELECT * FROM users WHERE username=%s;",  [username])
+        row = rows[0]
+        return User(row["id"], row["username"], row["name"], row["email"], row["password"])

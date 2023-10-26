@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, session, flash
 from lib.database_connection import get_flask_database_connection
 from lib.Space_repository import Space_repository
 from lib.Space import Space
@@ -13,7 +13,6 @@ from lib.Space import Space
 from lib.request import Request
 from lib.request_repository import Request_repository
 
-
 # Create a new Flask app
 app = Flask(__name__)
 
@@ -22,7 +21,6 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def get_homepage():
     return render_template('index.html')
-
 
 #### ALL ROUTES ARE COMMENTED OUT FOR FUTURE USE, JUST UNCOMMENT TO USE
 # [GET][POST] /login 
@@ -41,17 +39,17 @@ def login():
     username = request.form.get('username')
     password = request.form.get('password')
 
-    new_repo = User_repository()
+    user_repository = User_repository()
 
-    if new_repo.login_valid(username, password) == True:
+    if user_repository.login_valid(username, password) == True:
+        user_object = user_repository.get_user_by_username(username)
         # starts a new session
         session['username'] = username
+        session['user_id'] = user_object.id
         return redirect('spaces')
-    
     else:
         flash('Invalid username or password. Please try again.')  # Store an error message
         return redirect('login') 
-
 
 
 # [GET][POST] /signup
@@ -119,41 +117,39 @@ def new_space():
 # Returns page specific space by its' id with calendar to choose a booking date
 # This is a page where user post a request
 # Posts a new request for booking a space
-@app.route('/spaces/<id>', methods=['GET'])
+@app.route('/spaces/<id>', methods=['GET', 'POST'])
 def get_single_space(id):
-    print("got to get")
-    connection = get_flask_database_connection(app)
+    if request.method == 'GET':
+        connection = get_flask_database_connection(app)
 
-    # get space object and pass to in jinja args
-    space_repository = Space_repository(connection)
-    space = space_repository.search_by_id(id)
+        # get space object and pass to in jinja args
+        space_repository = Space_repository(connection)
+        space = space_repository.search_by_id(id)
 
-    # get available dates for the space and display dropdown calendar
-    calendar = space_repository.get_dates_by_id(id)
+        # get available dates for the space and display dropdown calendar
+        calendar = space_repository.get_dates_by_id(id)
 
-    return render_template('single_space.html', space=space, calendar=calendar)
+        return render_template('single_space.html', space=space, calendar=calendar)
 
-# WORK IN PROGRESS 
-@app.route('/spaces/<id>', methods=['POST'])
-def post_request_for_single_space(id):
-    connection = get_flask_database_connection(app)
-    request_repository = Request_repository(connection)
+    if request.method == 'POST':
+        connection = get_flask_database_connection(app)
+        request_repository = Request_repository(connection)
+        requested_date = request.form["booking_date"]
+        # WARNING: TODO request_user_id must be changed to sessions["user_id"] when it works
+        request_user_id = 1
+        space_id = id
 
-    requested_date = request.form("calendar") #TODO is calendar ref id to chosen date?
-    # request_user_id TODO: need Jake's session
+        # new_request false by default
+        new_request = Request(None, request_user_id, space_id, requested_date, False)
+        request_repository.add_request(new_request)
+        message = "Thank you for your request!"
 
-    # TODO: get all data to post new request: request_user_id, space_id, requested_date, status
-    # new_request = Request(None, request_user_id, id, requested_date, False)
-    # request_repository.add_request(new_request)
-    message = "Thank you for your request!"
+        space_repository = Space_repository(connection)
+        space = space_repository.search_by_id(id)
+        calendar = space_repository.get_dates_by_id(id)
+        url = f"/spaces/{id}"
 
-    space_repository = Space_repository(connection)
-    space = space_repository.search_by_id(id)
-    calendar = space_repository.get_dates_by_id(id)
-    url = f"/spaces/{id}"
-
-    return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
-
+        return render_template('single_space.html', space=space, calendar=calendar, url=url, message=message)
 
 '''NOT IN USE'''
 # [GET][POST] /requests - template: request.html

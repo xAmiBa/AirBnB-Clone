@@ -74,3 +74,12 @@ def test_login_invalid_user(db_connection):
     user_to_log = repository.login_valid(username_to_log, password_to_log)
 
     assert user_to_log == False
+
+"""
+Gets user object by user id
+"""
+def test_get_user_id_by_username(db_connection):
+    db_connection.seed("seeds/db_makers_bnb.sql")
+    repository = User_repository(db_connection)
+    assert repository.get_user_by_username("Amina_1") == User(1,'Amina_1', 'Amina', 'Amina@mail.com','Amina123!')
+
