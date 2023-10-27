@@ -44,6 +44,8 @@
     <h1>Requests</h1>
     <form action="/load_request" method="POST">
     <p>Showing results for: {{ session.get("username") }}</p>
+    <!-- requests made -->
+    <h3>Requests I've made:</h3>
     <div class="container">
         <div class="column">
             {% for request in requests %}
@@ -61,6 +63,29 @@
             {% endfor %}
         </div>
     </div>
+    </form>
+    
+    <form action="/load_owner_request" method="POST">
+    <!-- requests recieved -->
+    <h3>Requests I've recieved:</h3>
+    <div class="container">
+        <div class="column">
+            {% for owner_request in owner_requests %}
+            <div class="entry">
+                <button type="submit" name="owner_request_id" value="{{ owner_request.id }}">
+                <h3>{{ (space_repo.search_by_id(owner_request.space_id)).name }}</h3>
+                {{owner_request.requested_date}}
+                {% if owner_request.status %}
+                <br> Accepted 
+                {% else %}
+                <br> Not accepted yet
+                {% endif %}
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
     </form>
 
     <div class="back-button">
