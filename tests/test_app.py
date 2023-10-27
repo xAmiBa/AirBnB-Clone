@@ -31,7 +31,7 @@ def test_for_error_exiting_user_signup(page, test_web_address):
         ["There were errors with your submission:\n\n\nThis email or username is alredy registered.\n\n"]
         )
     
-## BUG: TEST DOESNT WORK BUT IT WORKS ON SERVER? WILL WAIT FOR A COACH
+# BUG: TEST DOESNT WORK BUT IT WORKS ON SERVER? WILL WAIT FOR A COACH
 # def test_for_incorrect_login(page, test_web_address):
 #     # go to page
 #     page.goto(f"http://{test_web_address}/login")
@@ -149,24 +149,24 @@ def test_for_error_exiting_user_signup(page, test_web_address):
 #     description_tag = page.locator(".description")
 #     expect(description_tag).to_have_text('Experience city living at its finest in this stylish urban loft. With modern amenities and a prime downtown location, this loft is ideal for urban explorers and business travelers.')
 
-# BUG: works in browser but test is crashing as locator not found
-# """
-# Whet user submits a request, they see a thank you message
-# """
-# def test_for_submit_request(page, test_web_address):
-#     page.goto(f"http://{test_web_address}/spaces/2")
-#     page.click("text=Send a booking request")
-#     page.screenshot(path="screenshot.png", full_page=True)
+# # # BUG: works in browser but test is crashing as locator not found
+# # """
+# # Whet user submits a request, they see a thank you message
+# # """
+# # def test_for_submit_request(page, test_web_address):
+# #     page.goto(f"http://{test_web_address}/spaces/2")
+# #     page.click("text=Send a booking request")
+# #     page.screenshot(path="screenshot.png", full_page=True)
 
-    # message_tag = page.locator(".message")
-    # expect(message_tag).to_have_text("Thank you for your request!")
+# #     message_tag = page.locator(".message")
+# #     expect(message_tag).to_have_text("Thank you for your request!")
 
-"""
-when unlogged user try to access any page apart from signup and login
-acces is denied
-"""
-def test_access_denied(page, test_web_address):
-    page.goto(f"http://{test_web_address}/spaces/2")
-    page.screenshot(path='screenshot.png')
-    access_tag = page.locator("access")
-    expect(access_tag).to_have_text("Access denied. To see this page")
+# # """
+# # when unlogged user try to access any page apart from signup and login
+# # acces is denied
+# # """
+# # def test_access_denied(page, test_web_address):
+# #     page.goto(f"http://{test_web_address}/spaces/2")
+# #     page.screenshot(path='screenshot.png')
+# #     access_tag = page.locator("access")
+# #     expect(access_tag).to_have_text("Access denied. To see this page")

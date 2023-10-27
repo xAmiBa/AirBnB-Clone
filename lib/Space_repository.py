@@ -1,5 +1,6 @@
 from lib.Space import Space
 import json
+from datetime import date, timedelta, datetime
 
 class Space_repository():
     def __init__(self, connection):
@@ -53,3 +54,20 @@ class Space_repository():
             if value == False:
                 calendar_html.append(f'<option value="{key}">not available</option>')
         return calendar_html
+
+    def get_calendar_from_dates(self, start_date, end_date):
+        start_date_object = datetime.strptime(start_date, "%d/%m/%y").date()
+        end_date_object = datetime.strptime(end_date, "%d/%m/%y").date()
+        date_list = []
+
+        # iterate throug all dates between start and end to append to list of dates
+        current_date_object = start_date_object
+        while current_date_object <= end_date_object:
+            date_list.append(current_date_object.strftime("%d/%m/%y"))
+            current_date_object += timedelta(days=1)
+        
+        # create dictionary and set values as True by default
+        calendar = {date:True for date in date_list}
+        calendar_string = str(calendar).replace('\'', "\"").replace(": ", ":").replace("T", "t")
+        return calendar_string
+        
