@@ -117,7 +117,7 @@ def new_space():
         # passing minimum date to choose as today
         # maximum date to choose as in a year
         min_date = datetime.now().strftime('%Y-%m-%d')
-        max_date = (datetime.now() + timedelta(days=365)).strftime('%Y/%m-%d')
+        max_date = (datetime.now() + timedelta(days=365)).strftime('%Y-%m-%d')
 
         return render_template('new_space.html', spaces =lst, min_date=min_date, max_date=max_date)
     elif request.method == 'POST':
