@@ -117,17 +117,20 @@ def new_space():
         # passing minimum date to choose as today
         # maximum date to choose as in a year
         min_date = datetime.now().strftime('%Y-%m-%d')
-        max_date = (datetime.now() + timedelta(days=365)).strftime('%Y-%m-%d')
-        print(min_date)
-        print(max_date)
+        max_date = (datetime.now() + timedelta(days=365)).strftime('%Y/%m-%d')
+
         return render_template('new_space.html', spaces =lst, min_date=min_date, max_date=max_date)
     elif request.method == 'POST':
 
         name = request.form['name']
         description = request.form['description']
         price = request.form['price']
+
         available_from = request.form['available_from']
+        available_from = datetime.strptime(available_from, '%Y-%m-%d')
         available_till = request.form['available_till']
+        available_till = datetime.strptime(available_till, '%Y-%m-%d')
+
         new_space = Space(None,name, description, price, available_from, available_till, True)
         if not new_space.is_valid():
             return render_template('/new_space.html', space = new_space, errors = new_space.generate_errors()), 400
