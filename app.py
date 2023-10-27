@@ -216,6 +216,29 @@ def get_request_details(id):
 
     return render_template('request_details.html', user=user, request_user=request_user,request=request, requests=requests, space=space)
 
+@app.route('/request_response', methods=['POST'])
+@login_required
+def update_request_status():
+    connection = get_flask_database_connection(app)
+    connection.connect()
+
+    response = request.form['action'].split('-')
+    id = response[0]
+    response_type = response[1]
+
+    request_repo = Request_repository(connection)
+    if (response_type == 'cancel'):
+        request_repo.delete_request(id)
+    else:
+        request_repo.toggle_status(id)
+       
+
+    return redirect("/requests")
+
+    
+
+
+
 @app.route('/logout')
 def logout():
     # Clear the session data to log the user out
