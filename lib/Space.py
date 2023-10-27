@@ -9,7 +9,7 @@
 # - self.calendar - DICT (date:boolean)
 
 class Space(): 
-    def __init__(self, id, name, description, price, availability_from, availability_till, calendar):
+    def __init__(self, id, name, description, price, availability_from, availability_till, calendar, user_id):
         self.id = id
         self.name = name
         self. description = description
@@ -17,6 +17,7 @@ class Space():
         self.availability_from = availability_from
         self.availability_till = availability_till
         self.calendar = calendar
+        self.user_id = user_id
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
