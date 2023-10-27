@@ -170,4 +170,6 @@ def test_for_error_exiting_user_signup(page, test_web_address):
 #     page.goto(f"http://{test_web_address}/spaces/2")
 #     page.screenshot(path='screenshot.png')
 #     access_tag = page.locator("access")
+
 #     expect(access_tag).to_have_text("Access denied. To see this page")
+
