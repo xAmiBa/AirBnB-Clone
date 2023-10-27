@@ -46,10 +46,15 @@
     <h1>Requests</h1>
     <form action="/load_request" method="POST">
     <p>Showing results for: {{ session.get("username") }}</p>
+
+    <div class="t-space-container">
+        <div class="t-space">
+
     <!-- requests made -->
     <h3>Requests I've made:</h3>
     <div class="t-space-container">
         <div class="t-space">
+
             {% for request in requests %}
             <div class="entry">
                 <button type="submit" name="request_id" value="{{ request.id }}">
