@@ -36,9 +36,11 @@
     </style>
 </head>
 <body>
-    <div class="logout-button">
-        <a href="/logout">Log Out</a>
-    </div>
+    <ul>
+        <li><a href="/logout"">Log out</a></li>
+        <li><a href="/requests">Requests</a></li>
+        <li><a href="/spaces">Spaces</a></li>
+    </ul>
     <h1>Requests</h1>
     <form action="/load_request" method="POST">
     <p>Showing results for: {{ session.get("username") }}</p>
