@@ -1,6 +1,7 @@
 from lib.database_connection import DatabaseConnection
 from lib.Space_repository import Space_repository
 from lib.Space import Space
+from datetime import datetime 
 
 """
 When I call all_spaces() method
@@ -197,6 +198,10 @@ a dictionary calendar is created
 """
 def test_dictionary_calendar_created(db_connection):
     repository = Space_repository(db_connection)
-    assert repository.get_calendar_from_dates("01/12/23", "04/12/23") == '{"01/12/23":true, "02/12/23":true, "03/12/23":true, "04/12/23":true}'
-    
+
+    # Create datetime objects for start_date and end_date
+    start_date = datetime(2023, 12, 1)
+    end_date = datetime(2023, 12, 4)
+
+    assert repository.get_calendar_from_dates(start_date, end_date) == '{"01/12/23":true, "02/12/23":true, "03/12/23":true, "04/12/23":true}'
 
