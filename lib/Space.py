@@ -34,7 +34,7 @@ class Space():
         errors = []
         if (self.name == "") or (self.description == "") or (self.price == "") or (self.availability_from == "") or (self.availability_till == "") or\
         (self.name == None) or (self.description == None) or (self.price == None) or (self.availability_from == None) or (self.availability_till == None):
-            errors.append("all spaces should be completed")
+            errors.append("Form is not complete. Try again!")
         if len(errors) == 0:
             return None
         else:
