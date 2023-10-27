@@ -57,7 +57,7 @@ class Request_repository:
         
     def toggle_status(self, request_id):
         request = self.get_request_by_id(request_id)
-        self._connection.execute('UPDATE requests SET status = %s, WHERE id = %s', [not request.status, request_id])
+        self._connection.execute('UPDATE requests SET status = %s WHERE id = %s', [not request.status, request_id])
         return None
     
     def delete_request(self, request_id): #Need to add foreign keys eventually to SQL schema
