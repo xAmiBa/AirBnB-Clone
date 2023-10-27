@@ -197,6 +197,6 @@ a dictionary calendar is created
 """
 def test_dictionary_calendar_created(db_connection):
     repository = Space_repository(db_connection)
-    assert repository.get_calendar_from_dates("01/12/23", "04/12/23") == '{"01/12/23":True, "02/12/23":True, "03/12/23":True, "04/12/23":True}'
+    assert repository.get_calendar_from_dates("01/12/23", "04/12/23") == '{"01/12/23":true, "02/12/23":true, "03/12/23":true, "04/12/23":true}'
     
 

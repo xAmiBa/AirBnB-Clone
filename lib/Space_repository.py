@@ -68,6 +68,6 @@ class Space_repository():
         
         # create dictionary and set values as True by default
         calendar = {date:True for date in date_list}
-        calendar_string = str(calendar).replace('\'', "").replace(": ", ":").replace("T", "t")
+        calendar_string = str(calendar).replace('\'', "\"").replace(": ", ":").replace("T", "t")
         return calendar_string
         
