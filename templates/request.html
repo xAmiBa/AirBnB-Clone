@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
     <title>Your requests | MakersBnB</title>
+<head>
+    <link rel="stylesheet" href="/static/style.css" >
     <style>
         /* CSS styles go here */
         h1 {
@@ -37,17 +38,23 @@
 </head>
 <body>
     <ul>
-        <li><a href="/logout"">Log out</a></li>
+        <li><a href="/logout">Log out</a></li>
         <li><a href="/requests">Requests</a></li>
         <li><a href="/spaces">Spaces</a></li>
     </ul>
+    <br>
     <h1>Requests</h1>
     <form action="/load_request" method="POST">
     <p>Showing results for: {{ session.get("username") }}</p>
+
+    <div class="t-space-container">
+        <div class="t-space">
+
     <!-- requests made -->
     <h3>Requests I've made:</h3>
     <div class="container">
         <div class="column">
+
             {% for request in requests %}
             <div class="entry">
                 <button type="submit" name="request_id" value="{{ request.id }}">
