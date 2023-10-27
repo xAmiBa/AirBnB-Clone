@@ -187,8 +187,8 @@ def get_user_requests():
     connection = get_flask_database_connection(app)
     request_repository = Request_repository(connection)
     requests = request_repository.get_requests_for_user(user_id)
-
-    return render_template('request.html', name="Your Requests", requests=requests)
+    # get space id and retrieve space name, pass psace repo
+    return render_template('request.html', requests=requests, space_repo=Space_repository(connection))
 
 #Redirects to relevant request page
 @app.route('/load_request', methods=['POST'])

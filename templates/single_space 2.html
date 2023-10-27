@@ -5,35 +5,25 @@
         <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
-        <div class="logout-button">
-            <a href="/logout">Log Out</a></div>
         <h1>{{ space.name }}</h1>
         <p class="price">Price per night: £{{ space.price }}</p>
         <p class="description">{{ space.description }}</p>
-        
-        <form action="{{ url }}" method="POST">
+
+        <form methods="POST">
             <!-- user selects available date to book a space -->
-            <select name="booking_date" id="booking_date">
-                
+            <select name="calendar" id="calendar">
                 {% for date in calendar %}
                 <!-- safe tells htm to not escape values as it's html code -->
                 {{ date|safe }}<br>
                 {% endfor %}
             </select>
             <input type="submit" value="Send a booking request">
-            <p class="message">
-                {% if message %}
-                {{ message }}
-                {% endif %}
-            </p>
         </form>
-
-        <div class="back-button">
-            <br>
-            <a href="/spaces">
-                <img src="/static/icons8-back-arrow-50.png" width="40px" alt="button go back to previous page">
-            </a>
-        </div>
-        
+        <p class="message">
+            {% if message %}
+            {{ message }}
+            {% endif %}
+        </p>
     </body>
+    
 </html>

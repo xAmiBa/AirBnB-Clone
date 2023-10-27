@@ -47,11 +47,12 @@
             {% for request in requests %}
             <div class="entry">
                 <button type="submit" name="request_id" value="{{ request.id }}">
-                {{request.requested_date}} 
+                <h3>{{ (space_repo.search_by_id(request.space_id)).name }}</h3>
+                {{request.requested_date}}
                 {% if request.status %}
-                <br> Confirmed 
+                <br> Accepted 
                 {% else %}
-                <br> Not Confirmed
+                <br> Not accepted yet
                 {% endif %}
                 </button>
             </div>
@@ -59,5 +60,13 @@
         </div>
     </div>
     </form>
+
+    <div class="back-button">
+        <br>
+        <a href="/spaces">
+            <img src="/static/icons8-back-arrow-50.png" width="40px" alt="button go back to previous page">
+        </a>
+    </div>
+
 </body>
 </html>
