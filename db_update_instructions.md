@@ -1,17 +1,14 @@
+Hey, spaces ownership is implemented so please follow instructions to add it to your machine.
 
--- DROP SEQUENCE IF EXISTS <table_name>_id_seq;
+1. Delete spaces table from MAKERS_BNB and MAKERS_BNB_TEST on your machine
+    - go to Table plus, delete spaces table (it should be red)
+    - press [command + s] to save changes
 
--- -- Then, we recreate them
--- CREATE SEQUENCE IF NOT EXISTS <table_name>_id_seq;
--- CREATE TABLE <table_name> (
---     id SERIAL PRIMARY KEY,
---     <column> text,
---     <column> int,
--- );
+2. Run this SQL query in your tableplus SQL (both makers_bnb and makers_bnb_test)
 
--- INSERT INTO <table_name> (<columns>) VALUES (<values>);
+```
 
-DROP TABLE IF EXISTS spaces;
+    DROP TABLE IF EXISTS spaces;
 DROP SEQUENCE IF EXISTS spaces_id_seq;
 
 CREATE SEQUENCE IF NOT EXISTS spaces_id_seq;
@@ -61,50 +58,6 @@ VALUES (
     '{"22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true, "27/11/22":true, "28/11/22":true, "29/11/22":true, "30/11/22":true, "01/12/22":true, "02/12/22":true, "03/12/22":true, "04/12/22":true, "05/12/22":true, "06/12/22":true, "07/12/22":true, "08/12/22":true, "09/12/22":true, "10/12/22":true, "11/12/22":true, "12/12/22":true}',
     2
 );
+```
 
-DROP TABLE IF EXISTS users;
-DROP SEQUENCE IF EXISTS users_id_seq;
-
--- Then, we recreate them
-CREATE SEQUENCE IF NOT EXISTS users_id_seq;
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username text,
-    name text,
-    email text,
-    password text
-);
-
-INSERT INTO users (username, name, email, password) VALUES ('Amina_1', 'Amina', 'Amina@mail.com','Amina123!');
-INSERT INTO users (username, name, email, password) VALUES ('Jake_1', 'Jake', 'Jake@mail.com','Jake123!');
-INSERT INTO users (username, name, email, password) VALUES ('Sudhansh_1', 'Sudhansh', 'Sudhansh@mail.com','Sudhansh123!');
-
--- ### request tables over
--- REQUEST TAABLES #############
-
-DROP TABLE IF EXISTS requests;
-DROP SEQUENCE IF EXISTS requests_id_seq;
-
--- Then, we recreate them
-CREATE SEQUENCE IF NOT EXISTS requests_id_seq;
-CREATE TABLE requests (
-    id SERIAL PRIMARY KEY,
-    request_user_id int,
-    space_id int,
-    requested_date text,
-    status boolean
-);
-
--- request 1 
-INSERT INTO requests (request_user_id, space_id, requested_date, status) 
-VALUES (1,2, '12/12/23',FALSE);
-
--- request 2 
-INSERT INTO requests (request_user_id, space_id, requested_date, status) 
-VALUES (2,3,'03/08/23',FALSE);
-
-
--- ### request tables over
-
-
-
+3. Click command + R which will refresh and show tables. Thanks!

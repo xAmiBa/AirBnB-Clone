@@ -125,22 +125,23 @@ def new_space():
         name = request.form['name']
         description = request.form['description']
         price = request.form['price']
+        user_id = session.get('user_id')
 
         available_from = request.form['available_from']
         available_from = datetime.strptime(available_from, '%Y-%m-%d')
         available_till = request.form['available_till']
         available_till = datetime.strptime(available_till, '%Y-%m-%d')
+        space_repository = Space_repository(connection)
+        calendar = space_repository.get_calendar_from_dates(available_from, available_till)
 
-        new_space = Space(None,name, description, price, available_from, available_till, True)
+        new_space = Space(None,name, description, price, available_from, available_till, calendar, user_id)
         if not new_space.is_valid():
             return render_template('/new_space.html', space = new_space, errors = new_space.generate_errors()), 400
         
         else:
             place_price = float(price)
             # get calendar dictionary
-            space_repository = Space_repository(connection)
-            calendar = space_repository.get_calendar_from_dates(available_from, available_till)
-            the_place = Space(None,name, description, place_price, available_from, available_till, calendar)
+            the_place = Space(None,name, description, place_price, available_from, available_till, calendar, user_id)
             repository.add_space(the_place)
             return redirect(f"/spaces")
 
@@ -190,14 +191,35 @@ def get_user_requests():
     connection = get_flask_database_connection(app)
     request_repository = Request_repository(connection)
     requests = request_repository.get_requests_for_user(user_id)
+
+    # get requests done by logged in user (owner)
+    space_repository = Space_repository(connection)
+    # search for spaces owned by user
+    spaces_owned = space_repository.search_by_user_id(user_id)
+    # search for spaces id's
+    spaces_owned_ids = [space.id for space in spaces_owned]
+    # search for requests with that id's
+    # if space_id from user owned spaces is in request.space_id this request is appended
+    owner_requests = []
+    for request in requests:
+        if request.space_id in spaces_owned_ids:
+            owner_requests.append(request)
+
     # get space id and retrieve space name, pass psace repo
-    return render_template('request.html', requests=requests, space_repo=Space_repository(connection))
+    return render_template('request.html', owner_requests=owner_requests, requests=requests, space_repo=Space_repository(connection))
 
 #Redirects to relevant request page
 @app.route('/load_request', methods=['POST'])
 @login_required
 def load_request():
     id = request.form['request_id']
+    return redirect(f"/requests/{id}")
+
+
+@app.route('/load_owner_request', methods=['POST'])
+@login_required
+def load_owner_request():
+    id = request.form['owner_request_id']
     return redirect(f"/requests/{id}")
 
 @app.route('/requests/<id>', methods=['GET'])
@@ -210,14 +232,17 @@ def get_request_details(id):
     user = user_repo.get_user_by_username(session.get("username"))
 
     request_repo = Request_repository(connection)
+    # id_one_up = str(int(id) + 1)
+    #BUG id -> user id not request user
     request = request_repo.get_request_by_id(id)
     requests = request_repo.get_all_requests()
     request_user = user_repo.get_user_by_id(request.request_user_id)
+    print(f"USER SHLOUD BE AMINA:{request_user.username}")
 
     space_repo = Space_repository(connection)
     space = space_repo.search_by_id(request.space_id)
 
-    return render_template('request_details.html', user=user, request_user=request_user,request=request, requests=requests, space=space)
+    return render_template('request_details.html', user=user, request_user=request_user, request=request, requests=requests, space=space)
 
 @app.route('/request_response', methods=['POST'])
 @login_required

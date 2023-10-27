@@ -19,7 +19,8 @@ def test_all_spaces(db_connection):
         120,
         '10/11/22',
         '23/22/22',
-        '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}'
+        '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}',
+        3
         ),
         Space(
             2,
@@ -28,7 +29,8 @@ def test_all_spaces(db_connection):
             200,
             '15/11/22',
             '01/12/22',
-            '{"15/11/22":true, "16/11/22":true, "17/11/22":true, "18/11/22":true, "19/11/22":true, "20/11/22":true, "21/11/22":true, "22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true}'
+            '{"15/11/22":true, "16/11/22":true, "17/11/22":true, "18/11/22":true, "19/11/22":true, "20/11/22":true, "21/11/22":true, "22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true}',
+            1
         ),
         Space(
             3,
@@ -37,7 +39,8 @@ def test_all_spaces(db_connection):
             300,
             '22/11/22',
             '05/01/23',
-            '{"22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true, "27/11/22":true, "28/11/22":true, "29/11/22":true, "30/11/22":true, "01/12/22":true, "02/12/22":true, "03/12/22":true, "04/12/22":true, "05/12/22":true, "06/12/22":true, "07/12/22":true, "08/12/22":true, "09/12/22":true, "10/12/22":true, "11/12/22":true, "12/12/22":true}'
+            '{"22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true, "27/11/22":true, "28/11/22":true, "29/11/22":true, "30/11/22":true, "01/12/22":true, "02/12/22":true, "03/12/22":true, "04/12/22":true, "05/12/22":true, "06/12/22":true, "07/12/22":true, "08/12/22":true, "09/12/22":true, "10/12/22":true, "11/12/22":true, "12/12/22":true}',
+            2
         )
         ]
     
@@ -57,7 +60,8 @@ def test_add_new_space(db_connection):
         666,
         "test availability_from",
         "test avaiability_till",
-        "{test:calendar}"
+        "{test:calendar}",
+        3
         )
     repository.add_space(test_space)
     assert repository.all_spaces() == [ 
@@ -68,8 +72,8 @@ def test_add_new_space(db_connection):
         120,
         '10/11/22',
         '23/22/22',
-        '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}'
-        ),
+        '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}',
+        3),
         Space(
             2,
             'Modern Urban Loft',
@@ -77,7 +81,8 @@ def test_add_new_space(db_connection):
             200,
             '15/11/22',
             '01/12/22',
-            '{"15/11/22":true, "16/11/22":true, "17/11/22":true, "18/11/22":true, "19/11/22":true, "20/11/22":true, "21/11/22":true, "22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true}'
+            '{"15/11/22":true, "16/11/22":true, "17/11/22":true, "18/11/22":true, "19/11/22":true, "20/11/22":true, "21/11/22":true, "22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true}',
+            1
         ),
         Space(
             3,
@@ -86,7 +91,8 @@ def test_add_new_space(db_connection):
             300,
             '22/11/22',
             '05/01/23',
-            '{"22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true, "27/11/22":true, "28/11/22":true, "29/11/22":true, "30/11/22":true, "01/12/22":true, "02/12/22":true, "03/12/22":true, "04/12/22":true, "05/12/22":true, "06/12/22":true, "07/12/22":true, "08/12/22":true, "09/12/22":true, "10/12/22":true, "11/12/22":true, "12/12/22":true}'
+            '{"22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true, "27/11/22":true, "28/11/22":true, "29/11/22":true, "30/11/22":true, "01/12/22":true, "02/12/22":true, "03/12/22":true, "04/12/22":true, "05/12/22":true, "06/12/22":true, "07/12/22":true, "08/12/22":true, "09/12/22":true, "10/12/22":true, "11/12/22":true, "12/12/22":true}',
+            2
         ),
         Space(
             4,
@@ -95,7 +101,8 @@ def test_add_new_space(db_connection):
             666,
             "test availability_from",
             "test avaiability_till",
-            "{test:calendar}"
+            "{test:calendar}",
+            3
             )
             ]
 
@@ -113,7 +120,8 @@ def test_search_for_space_by_id(db_connection):
         120,
         '10/11/22',
         '23/22/22',
-        '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}'
+        '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}',
+        3
         )
 """
 When I call add_space() method and not fill all the fields
@@ -130,7 +138,8 @@ def test_add_invalid_place(db_connection):
         23,
         "test availability_from",
         "",
-        "{test:calendar}"
+        "{test:calendar}",
+        3
         )
     
     repository.add_space(test_space)
@@ -143,7 +152,8 @@ def test_add_invalid_place(db_connection):
         120,
         '10/11/22',
         '23/22/22',
-        '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}'
+        '{"10/11/22":true,"11/11/22":true,"12/11/22":true,"13/11/22":true,"14/11/22":true,"15/11/22":true,"16/11/22":true,"17/11/22":true,"18/11/22":true,"19/11/22":true,"20/11/22":true,"21/11/22":true,"22/11/22":true,"23/11/22":true}',
+        3
         ),
         Space(
             2,
@@ -152,8 +162,9 @@ def test_add_invalid_place(db_connection):
             200,
             '15/11/22',
             '01/12/22',
-            '{"15/11/22":true, "16/11/22":true, "17/11/22":true, "18/11/22":true, "19/11/22":true, "20/11/22":true, "21/11/22":true, "22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true}'
-        ),
+            '{"15/11/22":true, "16/11/22":true, "17/11/22":true, "18/11/22":true, "19/11/22":true, "20/11/22":true, "21/11/22":true, "22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true}',
+            1
+            ),
         Space(
             3,
             'Beachfront Paradise',
@@ -161,7 +172,8 @@ def test_add_invalid_place(db_connection):
             300,
             '22/11/22',
             '05/01/23',
-            '{"22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true, "27/11/22":true, "28/11/22":true, "29/11/22":true, "30/11/22":true, "01/12/22":true, "02/12/22":true, "03/12/22":true, "04/12/22":true, "05/12/22":true, "06/12/22":true, "07/12/22":true, "08/12/22":true, "09/12/22":true, "10/12/22":true, "11/12/22":true, "12/12/22":true}'
+            '{"22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true, "27/11/22":true, "28/11/22":true, "29/11/22":true, "30/11/22":true, "01/12/22":true, "02/12/22":true, "03/12/22":true, "04/12/22":true, "05/12/22":true, "06/12/22":true, "07/12/22":true, "08/12/22":true, "09/12/22":true, "10/12/22":true, "11/12/22":true, "12/12/22":true}',
+            2
         )
         ]
 
@@ -169,7 +181,7 @@ def test_add_invalid_place(db_connection):
 """
 get rendered html dates options by space id
 when date is booked displays: not available
-# """
+"""
 def test_get_html_template_options_of_calendar(db_connection):
     repository = Space_repository(db_connection)
     db_connection.seed('seeds/db_makers_bnb.sql')
@@ -181,7 +193,8 @@ def test_get_html_template_options_of_calendar(db_connection):
         666,
         "test availability_from",
         "test avaiability_till",
-        '{"15/11/22":true, "16/11/22":true, "17/11/22":false, "18/11/22":true}'
+        '{"15/11/22":true, "16/11/22":true, "17/11/22":false, "18/11/22":true}',
+        2
         )
     repository.add_space(test_space)
 
@@ -205,3 +218,21 @@ def test_dictionary_calendar_created(db_connection):
 
     assert repository.get_calendar_from_dates(start_date, end_date) == '{"01/12/23":true, "02/12/23":true, "03/12/23":true, "04/12/23":true}'
 
+"""
+When I search for id by user_id
+I display all spaces which belong to user
+"""
+def test_get_spaces_by_user_id(db_connection):
+    repository = Space_repository(db_connection)
+    assert repository.search_by_user_id(1) == [
+        Space(
+            2,
+            'Modern Urban Loft',
+            'Experience city living at its finest in this stylish urban loft. With modern amenities and a prime downtown location, this loft is ideal for urban explorers and business travelers.',
+            200,
+            '15/11/22',
+            '01/12/22',
+            '{"15/11/22":true, "16/11/22":true, "17/11/22":true, "18/11/22":true, "19/11/22":true, "20/11/22":true, "21/11/22":true, "22/11/22":true, "23/11/22":true, "24/11/22":true, "25/11/22":true, "26/11/22":true}',
+            1
+            )
+    ]
