@@ -36,7 +36,9 @@
     </style>
 </head>
 <body>
-
+    <div class="logout-button">
+        <a href="/logout">Log Out</a>
+    </div>
     <h1>Requests</h1>
     <form action="/load_request" method="POST">
     <p>Showing results for: {{ session.get("username") }}</p>

@@ -31,7 +31,7 @@ def test_for_error_exiting_user_signup(page, test_web_address):
         ["There were errors with your submission:\n\n\nThis email or username is alredy registered.\n\n"]
         )
     
-## BUG: TEST DOESNT WORK BUT IT WORKS ON SERVER? WILL WAIT FOR A COACH
+# BUG: TEST DOESNT WORK BUT IT WORKS ON SERVER? WILL WAIT FOR A COACH
 # def test_for_incorrect_login(page, test_web_address):
 #     # go to page
 #     page.goto(f"http://{test_web_address}/login")
@@ -149,6 +149,7 @@ def test_for_error_exiting_user_signup(page, test_web_address):
 #     description_tag = page.locator(".description")
 #     expect(description_tag).to_have_text('Experience city living at its finest in this stylish urban loft. With modern amenities and a prime downtown location, this loft is ideal for urban explorers and business travelers.')
 
+
 # BUG: works in browser but test is crashing as locator not found
 # """
 # Whet user submits a request, they see a thank you message
@@ -170,4 +171,3 @@ def test_for_error_exiting_user_signup(page, test_web_address):
 #     page.screenshot(path='screenshot.png')
 #     access_tag = page.locator("access")
 #     expect(access_tag).to_have_text("Access denied. To see this page")
-
