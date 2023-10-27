@@ -97,11 +97,11 @@ CREATE TABLE requests (
 
 -- request 1 
 INSERT INTO requests (request_user_id, space_id, requested_date, status) 
-VALUES (1,2, '12/12/23',FALSE);
+VALUES (1,3, '12/12/23',FALSE);
 
 -- request 2 
 INSERT INTO requests (request_user_id, space_id, requested_date, status) 
-VALUES (2,3,'03/08/23',FALSE);
+VALUES (2,2,'03/08/23',FALSE);
 
 
 -- ### request tables over

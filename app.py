@@ -201,7 +201,7 @@ def get_user_requests():
     # search for requests with that id's
     # if space_id from user owned spaces is in request.space_id this request is appended
     owner_requests = []
-    for request in requests:
+    for request in request_repository.get_all_requests():
         if request.space_id in spaces_owned_ids:
             owner_requests.append(request)
 
