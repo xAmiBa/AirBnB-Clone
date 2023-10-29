@@ -12,12 +12,11 @@ from lib.Space import Space
 # import custom decorator which authentocates the user
 from lib.login_required import login_required
 from datetime import datetime, timedelta
+import secrets
 
 # Create a new Flask app
 app = Flask(__name__)
-# BUG
-# Temporary disclosed secret key as env variable doesnt work
-app.secret_key = "hdcvfhjw6r86ojkdbkw"
+app.secret_key = secrets.token_hex(32)
 
 # [GET] /
 # Returns the homepage
