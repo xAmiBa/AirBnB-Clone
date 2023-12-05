@@ -13,6 +13,8 @@ from lib.Space import Space
 from lib.login_required import login_required
 from datetime import datetime, timedelta
 import secrets
+import ast
+
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -96,6 +98,7 @@ def spaces_list():
     connection = get_flask_database_connection(app)
     space_repository = Space_repository(connection)
     lst = space_repository.all_spaces()
+    # print(ast.literal_eval(lst[1].photos))
     return render_template('spaces.html', spaces =lst)
 
 # [GET][POST] /spaces/new -- template = new_place.html

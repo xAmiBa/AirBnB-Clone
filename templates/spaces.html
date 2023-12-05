@@ -22,6 +22,20 @@
                 <div class="t-space">
                     <h3>{{space.name}}</h3>
                         <p>{{space.description}}</p>
+                        <p>Type: {{space.space_type}}</p>
+                        <!-- TODO Replace booleans with image or info -->
+                        <p>Wifi connection: {{space.wifi}}</p>
+                        <p>Office space: {{space.office}}</p>
+                        <p>Bathroom: {{space.bathroom}}</p>
+
+                        <!-- display photos -->
+                        <div class="space-photos-container">
+                        {% for photo in space.photos%}
+                            <div class="space-photo">
+                                <img src="/static/uploads/{{photo}}"/>
+                            </div>
+                        {% endfor %}
+                        </div>
                         <a name="name" href="/spaces/{{space.id}}">Book now</a>
                 </div>
             {% endfor %}
