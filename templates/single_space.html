@@ -14,6 +14,20 @@
         <h1>{{ space.name }}</h1>
         <p class="price">Price per night: £{{ space.price }}</p>
         <p class="description">{{ space.description }}</p>
+        <p>Type: {{space.space_type}}</p>
+        <!-- TODO Replace booleans with image or info -->
+        <p>Wifi connection: {{space.wifi}}</p>
+        <p>Office space: {{space.office}}</p>
+        <p>Bathroom: {{space.bathroom}}</p>
+
+        <!-- display photos -->
+        <div class="space-photos-container">
+        {% for photo in space.photos%}
+            <div class="space-photo">
+                <img src="/static/uploads/{{photo}}"/>
+            </div>
+        {% endfor %}
+        </div>
         
         <form action="{{ url }}" method="POST">
             <!-- user selects available date to book a space -->
