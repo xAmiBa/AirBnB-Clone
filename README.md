@@ -1,8 +1,10 @@
-# Airbnb Clone
+# WanderDesk | AirBnb for Digital Nomads
+![demo image](static/screen1.png)
 
 ## Table of Contents
 
 - [Description](#description)
+- [Demo](#demo)
 - [What I Learned](#what-i-learned)
 - [Getting Started](#getting-started)
 - [Features](#features)
@@ -10,25 +12,28 @@
 
 ## Description
 
-This project is an Airbnb clone that allows users to list and book accommodations. Users can sign up, log in, list their properties, view available properties, and send booking requests.
+Diversion from group Airbnb project. This project is an Airbnb portal for digital nomads, allowing users to list and book accommodations suitable for remote working around the world. Users can sign up, log in, list their properties, view available properties, and send, accept, cancel, and revoke booking requests.
 
-## What I Learned
+## Demo
+![demo gif](static/demo.gif)
 
-During the development of this project, you and your team members learned the following:
+## My Code
 
-- **Web Development**: You gained practical experience in web development using Flask, a popular Python web framework.
+During the development of this project, me and my team members learned the following:
 
-- **Database Management**: You learned to connect and interact with a database to store user data, property listings, and booking requests.
+- **Web Development**: Advanced CSS transitions and styling. HTML templates rendering.
 
-- **Session Management**: The project involved user authentication and session management, allowing users to log in and log out.
+- **Database Management**: PostgreSQL configuration and queries.
 
-- **Form Handling**: You learned how to handle user input through forms and validate user information.
+- **Session Management**: The project involved user authentication and session management with Flask, allowing users to log in and log out.
 
-- **HTML Templating**: You used HTML templates to create the web pages for your application, making it easy to maintain and update the user interface.
+- **Files upload**: Files upload configured with Flask.
 
-- **Testing**: You implemented end-to-end testing for your application using Playwright to ensure its functionality.
+- **Form Handling**: I learned how to handle user input through forms and validate user information.
 
-- **Collaboration**: This project was a group effort, which helped you practice collaborative coding and version control using tools like Git.
+- **Testing**: Implemented end-to-end testing for your application using Playwright to ensure its functionality.
+
+- **Collaboration**: This project was a group effort, which helped me to practice collaborative coding and version control using tools like Git.
 
 ## Getting Started
 
@@ -37,7 +42,7 @@ To run this application on your local machine, you'll need to install the necess
 1. Clone the repository: `git clone <repository_url>`
 2. Install the required Python packages: `pip install -r requirements.txt`
 3. Set up your database and make any necessary configuration changes in the `config.py` file.
-4. Start the Flask application: `python app.py`
+4. Start the Flask application: `python3 app.py`
 
 Your Airbnb clone should now be accessible at `http://localhost:5000` in your web browser.
 
@@ -45,7 +50,7 @@ Your Airbnb clone should now be accessible at `http://localhost:5000` in your we
 
 - **User Authentication**: Users can sign up and log in to the platform.
 
-- **Property Listing**: Users can list their properties, specifying details like name, description, price, and availability dates.
+- **Property Listing**: Users can list their properties, specifying details like name, description, price, photos, and availability dates.
 
 - **Property Search**: Users can view available properties listed by other users.
 
@@ -63,5 +68,3 @@ Your Airbnb clone should now be accessible at `http://localhost:5000` in your we
 - **Gina Medina** - [GitHub Profile](https://github.com/Gin-71)
 - **Jake Otto** - [GitHub Profile](https://github.com/JakeOtto)
 - **Sudhansh Kumar** - [GitHub Profile](https://github.com/skrill500)
-
-Thank you for exploring our Airbnb clone project! If you have any questions or feedback, please feel free to reach out to any of the contributors.

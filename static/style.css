@@ -1,8 +1,7 @@
 
 /* Style the body element with a background color and margin */
 body {
-
-    background-image: url('/static/sample3.jpeg');
+    background-image: url('');
     background-size: cover;
 
     background-color: #f5f5f5; /* A soft neutral color */
@@ -12,24 +11,36 @@ body {
     font-size: 18px;
 }
 
-
-.center {
-    display: block;
+.text-block {
     margin-left: auto;
     margin-right: auto;
+    max-width: 60%;
+}
+
+.logo {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    padding: 50px;
+}
+.center {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
     width: 25%;
     height: 50%;
-    padding:20px ;
+    padding:30px ;
     }
 
 /* Style the navigation bar with a separate background color */
 ul {
     list-style-type: none;
-    margin: 0;
+    margin: 00;
     padding: 0;
-
-    background-color: #023e99; /* Choose your desired color */
-
+    text-decoration: solid;
+    background-color: #000000; /* Choose your desired color */
     position: fixed;
     width: 100%;
 }
@@ -39,6 +50,8 @@ ul li {
     display: inline;
     float: right;
     padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
 
 }
 
@@ -49,18 +62,32 @@ ul li a {
 
 /* Style the page header with a banner-like appearance */
 h1 {
-    background-color: #023e99; /* Choose your desired banner color */
-
-    color: #fff; /* Text color for the header */
+    color: #000000; /* Text color for the header */
     text-align: center;
-    padding: 20px 0;
-    margin: 0;
+    /* padding: 20px 0; */
+    /* margin: 20px, 20px; */
+}
+h2 {
+    color: #000000; /* Text color for the header */
+    text-align: center;    
+}
+h3 {
+    color: #000000; /* Text color for the header */
+    text-align: center;
+    /* padding: 20px 0; */
+    /* margin: 0; */
+}
+
+.icon {
+    width: 40px;
+    vertical-align: middle;
+    margin-right: 10px;
 }
 
 /* Style the introductory paragraph */
 p {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 /* Style the "List a Space" button */
@@ -75,33 +102,95 @@ a input[type="Submit"] {
 
 /* Style the spaces container */
 .t-space-container {
-    margin: 20px;
-    padding: 20px;
-    background-color: #fff; /* Background color for the container */
-    border: 1px solid #ddd; /* Add a border around the container */
-    border-radius: 5px;
-}
-
-/* Style individual spaces */
-.t-space {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    background-color: #f9f9f9; /* Background color for each space */
-    border-radius: 5px;
-}
-
-/* Style the "Book now" link for each space */
-.t-space a {
-    display: block;
-    background-color: #023e99; /* Link background color */
-
-    color: #fff; /* Text color for the link */
+    column-count: 2;
+    display: flex; 
+    /* flex-direction: column; */
     text-align: center;
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 10px;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    column-gap: 50px;
+    padding: 50px;
+    border-radius: 25px;
+}
+
+.t-space-container2 {
+    text-align: center;
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    padding: 50px;
+    border-radius: 25px;
+}
+
+.stats {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex; 
+    column-count: 4;
+    background-color: black;
+    border-radius: 25px;
+}
+
+.stats p {
+    filter: invert(1);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.col {
+    padding: 10px; 
+    flex: 50%; 
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.space-list {
+    margin: 20px; /* Add margin for spacing between space containers */
+
+  }
+
+.space-photo img {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border: #000;
+    border-radius: 1px;
+    transition:transform 0.7s ease;
+    border-radius: 15px;
+    border-color: black;
+    margin-bottom: 20px;
+}
+
+.space-photo img:hover {
+    /* -webkit-transform:scale(2); or some other value */
+    transform:scale(1.8);
+}
+
+.space-photo2 {
+    text-align: center;
+}
+.space-photo2 img {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
+    border: #000;
+    border-radius: 1px;
+    transition:transform 0.7s ease;
+    border-radius: 15px;
+    border-color: black;
+    margin-bottom: 20px;
+}
+
+.space-photo2 img:hover {
+    transform:scale(1.5);
 }
 
 form {
@@ -110,4 +199,126 @@ form {
     text-decoration: none;
     border-radius: 5px;
     margin-top: 10px;
+}
+
+
+
+.field {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.field:hover,
+.field:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.field:active {
+  background: var(--color);
+  color: #fff;
+}
+
+.field2 {
+    border: black;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+}
+
+/* <!-- HTML !-->
+<button class="button-50" role="button">Button 50</button> */
+
+/* CSS */
+.button-50 {
+  appearance: button;
+  background-color: #000;
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  /* display: inline-block; */
+  font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-50:focus {
+  text-decoration: none;
+}
+
+.button-50:hover {
+  text-decoration: none;
+}
+
+.button-50:active {
+  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.button-50:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-50 {
+    padding: 12px 50px;
+    margin-left: auto;
+    margin-right: auto; 
+  }
+}
+
+.container-1 {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;    
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    max-width: 40%;
+
+}
+
+.request-card {
+    border-radius: 10px;
+    border-color: black;
+    background-color: white;
+    margin: 10px;
+    width: 70%;
+}
+
+.request-card p {
+    font-size: medium;
 }

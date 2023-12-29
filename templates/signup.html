@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Signup | MakersBnB</title>
+        <title>Signup | WanderDesk</title>
         <link rel="stylesheet" href="/static/style.css" >
     </head>
     <body>
-        <h1>Signup to MakersBnB</h1>
+        <h1>Signup to WanderDesk</h1>
         <form action="/signup" method="POST">
             <!-- showing errors if there are any in the list -->
             {% if errors %}
@@ -19,30 +19,29 @@
             {% endif %}
         <h2>{{ message }}</h2>
         <p>
-            <label for="name">Name</label><br>
-            <input type="text" name="name" id="name">
+            <input class="field" type="text" name="name" id="name" placeholder="name">
         </p>
 
         <p>
-            <label for="username">Username</label><br>
-            <input type="text" name="username" id="username">
+            <input class="field" type="text" name="username" id="username" placeholder="username">
         </p>
 
         <p>
-            <label for="email">Email</label><br>
-            <input type="text" name="email" id="email">
+            <input class="field" type="text" name="email" id="email" placeholder="email">
         </p>
         
         <p>
-            <label for="password">Password</label><br>
-            <input type="password" name="password" id="password">
+            <input class="field" type="password" name="password" id="password" placeholder="password">
         </p>
       
       <p>
         <!-- `type` is submit here, to indicate it is a button -->
         <!-- `value` is used as the button's text -->
-        <input type="submit" value="Signup to MarkersBnB">
+        <input class="button-50" type="submit" value="SIGNUP">
       </p>
         </form>
+        <div class="center">
+            <a class="button-50" style="text-decoration:none" href="/"><</a>
+        </div>
     </body>
 </html>

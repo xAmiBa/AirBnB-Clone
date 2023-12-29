@@ -16,16 +16,34 @@ class Space_repository():
             row['availability_from'],
             row['availability_till'],
             row['calendar'],
-            row['user_id']
+            row['user_id'],
+            row['photos'],
+            row['wifi'],
+            row['bathroom'],
+            row['office'],
+            row['space_type']
             ) for row in rows]
 
         return spaces
 
     def add_space(self, space_object):
         if space_object.is_valid() == True:
-            self._connection.execute("INSERT INTO spaces (name, description, price, availability_from, availability_till, calendar, user_id) "\
-                                    "VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                                    [space_object.name, space_object.description, space_object.price, space_object.availability_from, space_object.availability_till, space_object.calendar, space_object.user_id])
+            self._connection.execute("INSERT INTO spaces (name, description, price, availability_from, availability_till, calendar, user_id, photos, wifi, bathroom, office, space_type) "\
+                                    "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                                    [space_object.name,
+                                     space_object.description,
+                                     space_object.price,
+                                     space_object.availability_from,
+                                     space_object.availability_till,
+                                     space_object.calendar,
+                                     space_object.user_id,
+                                    # photos list converted to string before storing in db
+                                    # space model class converts it into list
+                                     str(space_object.photos),
+                                     space_object.wifi,
+                                     space_object.bathroom,
+                                     space_object.office,
+                                     space_object.space_type])
         
     def search_by_id(self, space_id):
         rows = self._connection.execute("SELECT * FROM spaces WHERE id=%s", [space_id])
@@ -38,7 +56,12 @@ class Space_repository():
             row['availability_from'],
             row['availability_till'],
             row['calendar'],
-            row['user_id']
+            row['user_id'],
+            row['photos'],
+            row['wifi'],
+            row['bathroom'],
+            row['office'],
+            row['space_type']
             )
     
     # renders list of html options for dropdown menu to list in template
@@ -84,6 +107,11 @@ class Space_repository():
             row['availability_from'],
             row['availability_till'],
             row['calendar'],
-            row['user_id']
+            row['user_id'],
+            row['photos'],
+            row['wifi'],
+            row['bathroom'],
+            row['office'],
+            row['space_type']
             ) for row in rows]
         return spaces

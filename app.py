@@ -13,9 +13,13 @@ from lib.Space import Space
 from lib.login_required import login_required
 from datetime import datetime, timedelta
 import secrets
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = os.path.join("static", "uploads")
 
 # Create a new Flask app
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = secrets.token_hex(32)
 
 # [GET] /
@@ -119,6 +123,7 @@ def new_space():
         max_date = (datetime.now() + timedelta(days=365)).strftime('%Y-%m-%d')
 
         return render_template('new_space.html', spaces =lst, min_date=min_date, max_date=max_date)
+    
     elif request.method == 'POST':
 
         name = request.form['name']
@@ -128,20 +133,32 @@ def new_space():
 
         available_from = request.form['available_from']
         available_from = datetime.strptime(available_from, '%Y-%m-%d')
+
         available_till = request.form['available_till']
         available_till = datetime.strptime(available_till, '%Y-%m-%d')
+ 
+        wifi = request.form['wifi']  # is format boolean?
+        bathroom = request.form['bathroom']
+        office = request.form['office'] # is format boolean?
+        space_type = request.form['space_type']
+
+        photo_files = request.files.getlist('photos')
+        filename_list = []
+        for file in photo_files:
+            custom_filename = secure_filename(str(datetime.now()) + file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], custom_filename))
+            filename_list.append(custom_filename)
+        
         space_repository = Space_repository(connection)
         calendar = space_repository.get_calendar_from_dates(available_from, available_till)
+        
+        new_space = Space(None, name, description, price, available_from, available_till, calendar, user_id, str(filename_list), wifi, bathroom, office, space_type)
 
-        new_space = Space(None,name, description, price, available_from, available_till, calendar, user_id)
         if not new_space.is_valid():
             return render_template('/new_space.html', space = new_space, errors = new_space.generate_errors()), 400
         
         else:
-            place_price = float(price)
-            # get calendar dictionary
-            the_place = Space(None,name, description, place_price, available_from, available_till, calendar, user_id)
-            repository.add_space(the_place)
+            repository.add_space(new_space)
             return redirect(f"/spaces")
 
 # [GET] /spaces/<id> -- template = spaces
@@ -231,8 +248,6 @@ def get_request_details(id):
     user = user_repo.get_user_by_username(session.get("username"))
 
     request_repo = Request_repository(connection)
-    # id_one_up = str(int(id) + 1)
-    #BUG id -> user id not request user
     request = request_repo.get_request_by_id(id)
     requests = request_repo.get_all_requests()
     request_user = user_repo.get_user_by_id(request.request_user_id)

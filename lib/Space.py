@@ -7,9 +7,23 @@
 # - self.availability_from - STRING
 # - self.availability_till - STRING
 # - self.calendar - DICT (date:boolean)
+import ast
 
 class Space(): 
-    def __init__(self, id, name, description, price, availability_from, availability_till, calendar, user_id):
+    def __init__(self,
+                 id,
+                 name,
+                 description,
+                 price,
+                 availability_from,
+                 availability_till,
+                 calendar,
+                 user_id,
+                 photos,
+                 wifi,
+                 bathroom,
+                 office,
+                 space_type):
         self.id = id
         self.name = name
         self. description = description
@@ -18,6 +32,11 @@ class Space():
         self.availability_till = availability_till
         self.calendar = calendar
         self.user_id = user_id
+        self.photos = ast.literal_eval(photos)
+        self.wifi = wifi
+        self.bathroom = bathroom
+        self.office = office
+        self.space_type = space_type
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__

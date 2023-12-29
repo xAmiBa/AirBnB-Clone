@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <link rel="stylesheet" href="/static/style.css" >
+    
     <head>
-        <title>List a Space | MakersBnB</title>
+        <title>List a Space | WanderDesk</title>
     </head>
     <body>
         <ul>
@@ -12,42 +13,81 @@
         </ul>
         <br>
         <h1>List a space</h1>
-        <form action ="/spaces/new" method="post">
-        {%if errors%} 
+        <form action ="/spaces/new" method="post" enctype="multipart/form-data">
+        {% if errors %} 
             
             <p class = "t-errors">
             There were errors with your submision: {{errors}}
             </p>
             
-        {%endif%}
+        {% endif %}
         
         <p>
-        <label for = "name">Name</label>
-        </p>
-        <p>
-        <input type="text" name = "name"  id = "name">
+        <label for = "name">Name</label><br>
+        <input type="text" name = "name"  id = "name" required>
         </p>
 
         <p>
-        <label for = "name">Description</label>
-        </p>
-        <p>
-        <input type="text" name = "description"  id = "description">
+        <label for = "description">Description</label><br>
+        <input type="text" name = "description"  id = "description" required>
         </p>
         
         <p>
-        <label for = "name">Price per night (£)</label><br>
+        <label for = "price">Price per night (£)</label><br>
         <input type="number" name = "price"  id = "price" required>
         </p>
         
         <p>
-        <label for = "name">Available from</label><br>
+        <label for = "available_from">Available from</label><br>
         <input type="date" name = "available_from"  id = "available_from " required min="{{ min_date }}" max="{{ max_date }}">
         </p>
 
         <p>
-        <label for = "name">Available to</label><br>
+        <label for = "available_till">Available to</label><br>
         <input type="date" name = "available_till"  id = "available_till" required>
+        </p>
+
+        <p>
+        <label for = "wifi">Wi-Fi connection</label><br>
+        <select id="wifi" name="wifi" required>
+            <option value="true">Available</option>
+            <option value="false">Not available</option>
+        </select>
+        </p>
+
+        <p>
+        <label for = "bathroom">Bathroom</label><br>
+        <select id="bathroom" name="bathroom" required>
+            <option value="shared">Shared</option>
+            <option value="private">Private</option>
+        </select>
+        </p>
+
+        <p>
+        <label for = "office">Office space</label><br>
+        <select id="office" name="office" required>
+            <option value="true">Desk and chair available</option>
+            <option value="false">No office space</option>
+        </select>
+        </p>
+
+        <p>
+        <label for = "space_type">Office space</label><br>
+        <select id="space_type" name="space_type" required>
+            <option value="house">Whole house</option>
+            <option value="room">Room with shared common spaces</option>
+            <option value="apartment">Whole apartment</option>
+        </select>
+        </p>
+
+        <p>
+        <label for = "photos">Add photos</label><br>
+        <input
+            type="file"
+            id="photos"
+            name="photos"
+            accept=".png, .jpg, .jpeg"
+            multiple required>
         </p>
 
         <p>

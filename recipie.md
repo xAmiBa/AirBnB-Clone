@@ -81,9 +81,9 @@ Properties:
 
 
 # Global naming rules
-DEV_DATABASE_NAME = "makersbnb"
+DEV_DATABASE_NAME = "WanderDesk"
 
-TEST_DATABASE_NAME = "test_makersbnb"
+TEST_DATABASE_NAME = "test_WanderDesk"
 
 DATE FORMAT = dd/mm/yy
 
