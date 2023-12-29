@@ -2,7 +2,7 @@
 <html lang="en">
     <link rel="stylesheet" href="/static/style.css" >
     <head>
-        <title>View space | MakersBnB</title>
+        <title>View space | WanderDesk</title>
     </head>
     <body>
         <ul>
@@ -11,40 +11,68 @@
             <li><a href="/spaces">Spaces</a></li>
         </ul>
         <br>
-        <h1>{{ space.name }}</h1>
-        <p class="price">Price per night: £{{ space.price }}</p>
-        <p class="description">{{ space.description }}</p>
-        <p>Type: {{space.space_type}}</p>
-        <!-- TODO Replace booleans with image or info -->
-        <p>Wifi connection: {{space.wifi}}</p>
-        <p>Office space: {{space.office}}</p>
-        <p>Bathroom: {{space.bathroom}}</p>
+        <br>
+        <br>
+        <br>
+        <div class="t-space-container2">
 
-        <!-- display photos -->
-        <div class="space-photos-container">
-        {% for photo in space.photos%}
-            <div class="space-photo">
-                <img src="/static/uploads/{{photo}}"/>
-            </div>
-        {% endfor %}
+            <h1>{{ space.name }}</h1>
+                
+             <!-- display photos -->
+                {% for photo in space.photos%}
+                <div class="space-photo2">
+                    <img src="/static/uploads/{{photo}}"/>
+                </div>
+                {% endfor %}
+
+                <div class="stats">
+                    <p> <img src="/static/space.png" class="icon"> It's a {{space.space_type}}</p>
+
+                    {% if not space.wifi %}
+                    <p><img class="icon" src="/static/wifi.png" alt="wifi logo">No WiFi available</p>
+                    {% endif %}
+        
+                    {% if space.wifi %}
+                    <p><img class="icon" src="/static/wifi.png" alt="wifi logo"> Fast WiFi available</p>
+                    {% endif %}
+        
+                    {% if space.office %}
+                    <p><img class="icon" src="/static/desk.png" alt="desk logo">Office space available</p>
+                    {% endif %}
+        
+                    {% if not space.office %}
+                    <p><img class="icon" src="/static/desk.png" alt="desk logo">No office space available</p>
+                    {% endif %}
+        
+        
+                    <p><img class="icon" src="/static/toilet.png" alt="toilet logo">Bathroom is {{space.bathroom}}</p>
+                    
+                </div>
+
+                <p>{{space.description}}</p>
+                <p class="price">Price per night: £{{ space.price }}</p>
+
+                <form action="{{ url }}" method="POST">
+                    <!-- user selects available date to book a space -->
+                    <label>Book a 2 week slot from: </label>
+                    <select class="field2" name="booking_date" id="booking_date">
+                        {% for date in calendar %}
+                        <!-- safe tells htm to not escape values as it's html code -->
+                        {{ date|safe }}<br>
+                        {% endfor %}
+                    </select>
+                    <br>
+                    <br>
+                    <input class="button-50" type="submit" value="SEND REQUEST">
+                    <p class="message">
+                        {% if message %}
+                        {{ message }}
+                        {% endif %}
+                    </p>
+                </form>
         </div>
         
-        <form action="{{ url }}" method="POST">
-            <!-- user selects available date to book a space -->
-            <select name="booking_date" id="booking_date">
-                
-                {% for date in calendar %}
-                <!-- safe tells htm to not escape values as it's html code -->
-                {{ date|safe }}<br>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Send a booking request">
-            <p class="message">
-                {% if message %}
-                {{ message }}
-                {% endif %}
-            </p>
-        </form>
+    
 
         <div class="back-button">
             <br>

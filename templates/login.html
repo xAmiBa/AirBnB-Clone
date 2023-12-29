@@ -4,12 +4,12 @@
     
 <head>
     <!--positioning and styling-->
-    <title>Login | MakersBnB</title>
+    <title>Login | WanderDesk</title>
 </head>
 <body>
-    <h1>Login to MakersBnB!</h1>
+    <h1>Login to WanderDesk.</h1>
         
-        <img src="/static/house-logo-20B5023FE2-seeklogo.com.png" alt="houseLogo" class="center">
+        <img src="/static/logo.svg" alt="houseLogo" class="logo">
         
         <!-- Form to collect address and password details  -->
         <form action="/login" method="POST">
@@ -17,18 +17,18 @@
             <p class="errors"> Details are incorrect. Try again!</p>
             {% endif %}
             <p>
-                <label for="username">Username:</label><br>
-                <input type="text" id="username" name="username" required>
+                <input class="field" type="text" id="username" name="username" placeholder="username">
             </p>
             <p>
-                <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password" required>
+                <input class="field" type="password" id="password" name="password" placeholder="password" required>
             </p>
             <!-- button to submit username and password  -->
-            <b>
-            <input type="submit" value="Login">
-            </b>
+            <input class="button-50" type="submit" value="LOGIN">
         </form>
+        <div class="center">
+            <a class="button-50" style="text-decoration:none" href="/"><</a>
+        </div>
+
         <!-- errors generated when login not valid -->
 
 </body>

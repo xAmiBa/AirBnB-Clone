@@ -248,8 +248,6 @@ def get_request_details(id):
     user = user_repo.get_user_by_username(session.get("username"))
 
     request_repo = Request_repository(connection)
-    # id_one_up = str(int(id) + 1)
-    #BUG id -> user id not request user
     request = request_repo.get_request_by_id(id)
     requests = request_repo.get_all_requests()
     request_user = user_repo.get_user_by_id(request.request_user_id)
